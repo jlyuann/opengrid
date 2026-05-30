@@ -9,9 +9,15 @@
 export type Lang = "zh" | "en";
 
 type Pillar = { title: string; body: string };
-// 一张入门卡：卡面 tag/title/body；点开后全屏阅读 read（正文逐段）。
-type Card = { tag: string; title: string; body: string; read: string[] };
 type Source = { label: string; url: string };
+// 一张入门卡：卡面 tag/title/body；点开后全屏阅读 read（正文逐段）+ sources（资料来源）。
+type Card = {
+  tag: string;
+  title: string;
+  body: string;
+  read: string[];
+  sources: Source[];
+};
 // 一个赛事门类：卡面只露 name + full；点开后展示概念 / 规则 / 亮点 / 来源。
 type RacingType = {
   name: string; // 卡面主词（标志性术语）：F1 / MotoGP / WRC …
@@ -72,6 +78,7 @@ export type Content = {
     subtitle: string;
     readMore: string; // 卡片底部「展开阅读」提示
     close: string; // 全屏阅读器关闭按钮 aria
+    sourceLabel: string; // 全屏阅读「资料来源」小标题
     cards: Card[];
   };
   racing: {
@@ -193,72 +200,119 @@ export const copy: Record<Lang, Content> = {
       subtitle: "没接触过也没关系。几分钟，带你迈过认识这项运动的第一道坎。",
       readMore: "展开阅读",
       close: "关闭",
+      sourceLabel: "资料来源",
       cards: [
         {
           tag: "基础",
           title: "什么是 F1？",
-          body: "一级方程式是赛车运动的最高殿堂：最快的车、最强的车手，每年在全球二十余条赛道上争夺冠军。",
+          body: "一级方程式是单座、开轮式赛车的最高级别：由 FIA 监管，每年在全球二十余条赛道上、由车手与车队争夺两项世界冠军。",
           read: [
-            "「一级方程式」里的「方程式」，指的并不是数学，而是一套所有车队都必须遵守的统一技术规则——车身尺寸、引擎形式、空气动力学的边界，全部写在国际汽联（FIA）的规则书里。大家在同一套「公式」下各自造车，于是比的既是车手，也是背后成百上千名工程师的智慧。这就是 F1 被称为赛车运动「最高殿堂」的原因：它把人类在速度上的工程极限，浓缩成了一项运动。",
-            "一支 F1 车队同时追逐两座奖杯。一座是「车手世界冠军」，颁给整个赛季积分最高的那名车手；另一座是「车队世界冠军」，把车队两位车手的积分合在一起算。所以你常会看到队友之间既并肩作战、又暗自较劲——他们既要一起帮车队拿下车队冠军，又都想成为那个登顶的人。",
-            "赛车本身是一件极致的作品：碳纤维车身轻到不可思议，混合动力单元把内燃机和电能回收揉在一起，每个弯道产生的下压力能让车「吸」在地面上。但再快的车，也要靠人在两三个小时里一刻不松地驾驭——心率长时间逼近运动员极限，还要在时速几百公里下做出毫秒级的判断。",
-            "对刚入门的人，不必被这些参数吓退。你只需要先记住一件事：F1 是「最快的车 + 最强的人 + 最聪明的工程」三者的同场较量。看懂了这一层，后面的排位赛、进站、轮胎策略，都只是这场较量展开的不同侧面而已。",
+            "一级方程式（Formula 1，简称 F1）是由国际汽车联合会（FIA）制定与监管竞赛规则、商业上由 Formula One 集团推广的单座、开轮式赛车最高级别赛事。名称中的「方程式」并不是数学公式，而是指所有参赛车队都必须共同遵守的一整套技术规则——它规定了车身尺寸、空气动力学、动力单元形式、最低重量等边界。各车队在同一套规则下自行设计、制造并运营自己的赛车，因此 F1 比拼的既是车手，也是车队背后成百上千名工程师的水平。",
+            "每个赛季同时进行两项世界锦标：颁给积分最高车手的「车手世界锦标赛」，以及把同队两位车手积分相加的「车队世界锦标赛」。正赛只有前十名得分，依次为 25、18、15、12、10、8、6、4、2、1 分；自 2025 赛季起，原本给最快圈速的 1 分附加分已被取消。",
+            "现行赛车采用 1.6 升 V6 涡轮增压内燃机，搭配能量回收系统（ERS）构成混合动力单元；车身以碳纤维单体壳为核心，在追求极限性能的同时保护车手。过弯时产生的巨大下压力，让赛车能以远超日常想象的速度通过弯角，而车手要在长达一两个小时的比赛里持续承受接近运动员极限的体能负荷。",
+            "一个标准比赛周末通常为周五两节自由练习、周六一节自由练习加排位赛、周日正赛；部分分站还设有周六的短程「冲刺赛（Sprint）」。现代规则中还有两项影响深远的设计：限制车队年度开支的「预算帽（cost cap）」，用以缩小大小车队的差距；以及辅助超车的 DRS（可调式尾翼）。",
+            "F1 世界锦标赛自 1950 年起举办，是历史最悠久、商业规模最大的赛车系列之一。对刚入门的人，不必被这些参数吓退——先记住一点即可：F1 是「最快的车 + 最强的车手 + 最强的工程团队」在同一套规则下的较量；看懂了这一层，后面的排位赛、进站、轮胎策略，都只是这场较量展开的不同侧面。",
+          ],
+          sources: [
+            { label: "Formula 1 官方（formula1.com）", url: "https://www.formula1.com" },
+            {
+              label: "FIA 竞赛规则（fia.com）",
+              url: "https://www.fia.com/regulation/category/110",
+            },
           ],
         },
         {
           tag: "观赛",
           title: "一场比赛怎么看？",
-          body: "一个比赛周末分为练习、排位赛和正赛。看点在于进站策略、轮胎选择，和毫秒之间的超车较量。",
+          body: "一个比赛周末分为练习、排位赛和正赛；看点集中在排位、起跑、轮胎与进站策略，以及毫秒之间的超车。",
           read: [
-            "一个 F1 比赛周末不是只有周日那场。它通常分三步走：先是「自由练习」，车队借此调校赛车、试不同的轮胎；接着是「排位赛」，逐节淘汰，最快的一圈决定你周日从第几位发车；最后才是周日的「正赛」，真正的争冠时刻。理解了这三步，你就不会再被周五的「没在比赛」搞糊涂——那是在为周日埋伏笔。",
-            "排位赛决定「发车顺序」，而发车顺序往往就决定了半场比赛的走势。最前排的位置叫「杆位（Pole）」，是一圈极限的奖赏。但起跑只是开始：灯灭的瞬间、第一个弯的卡位，常常在几秒钟里就改写排位赛辛苦排好的次序。",
-            "正赛真正的暗线，是「轮胎」和「进站」。轮胎越软越快，但也磨得越快；什么时候进站换胎、换哪种胎，是一场贯穿全程的博弈。一次完美的进站只花两三秒，慢一秒就可能把领先拱手让人。所以当解说开始喊「该进站了吗」，往往就是胜负的转折点。",
-            "至于最直观的看点——超车，它发生在直道尽头的重刹车区，或是借着尾流贴近前车的一瞬。看比赛时不必盯着每一辆车，挑两三个你喜欢的车手，跟着他们的节奏看：他在追谁、被谁追、轮胎还剩多少，一场比赛就会从「一堆车在转圈」变成一盘看得见的棋。",
+            "一个 F1 比赛周末不止周日那一场，通常分三步：先是「自由练习」，车队借此调校赛车、试不同轮胎；接着是「排位赛」，逐节淘汰、用最快单圈决定周日的发车顺序；最后才是周日的「正赛」。理解了这三步，就不会再被周五的「没在比赛」搞糊涂——那是在为周日做准备。",
+            "排位赛分 Q1、Q2、Q3 三节：每节淘汰当时最慢的若干车手，最终由最快的十位在 Q3 争夺「杆位（Pole）」，即周日发车第一位，其余车手按各自最快圈速排定发车顺序。发车顺序往往决定半场比赛的走势，但起跑只是开始：灯灭瞬间与第一个弯的卡位，常在几秒内改写排位赛辛苦排好的次序。",
+            "正赛真正的暗线是「轮胎」与「进站」。干地比赛中每位车手必须至少使用两种不同配方的干胎，因此通常至少进站一次。轮胎越软越快、但磨耗越快；何时进站、换哪种胎，是贯穿全程的博弈。一次干净的进站只花两三秒，慢一秒就可能把领先拱手让人——这也衍生出「提前进站（undercut）」「延后进站（overcut）」等抢位套路。",
+            "最直观的看点是超车，它多发生在直道尽头的重刹车区，或借助前车尾流贴近的一瞬。规则也提供辅助：DRS 允许后车在指定区域、与前车足够接近时打开尾翼以减小风阻、提高直线速度。此外，赛会用旗语、安全车（Safety Car）与虚拟安全车（VSC）在危险路段统一压低车速。",
+            "天气是另一个变量：下雨时车手会换上中性胎或全雨胎，雨量突变时「赌哪种胎」往往直接决定胜负。安全车出动整队时，原本拉开的车距会重新归零，让比赛回到几乎同一起跑线——这既可能毁掉领先者苦心经营的优势，也可能给落后者送上反超的良机，因此它常是一场比赛的重要转折。",
+            "给新手的看法建议：不必盯着每一辆车。挑两三个你喜欢的车手，跟着他们的节奏看——他在追谁、被谁追、轮胎还剩多少、什么时候进站。几场下来，一场比赛就会从「一堆车在转圈」变成一盘看得见的棋。",
+          ],
+          sources: [
+            { label: "Formula 1 官方（formula1.com）", url: "https://www.formula1.com" },
+            {
+              label: "FIA 竞赛规则（fia.com）",
+              url: "https://www.fia.com/regulation/category/110",
+            },
           ],
         },
         {
           tag: "起点",
           title: "卡丁车：最好的开始",
-          body: "几乎每位 F1 车手都从卡丁车起步。它便宜、安全、上手快——是普通人离赛车最近的入口。",
+          body: "几乎每位顶级车手都从卡丁车起步。它相对便宜、安全、上手快，是普通人离真正赛车最近的入口。",
           read: [
-            "如果说 F1 是金字塔的顶端，那卡丁车就是几乎所有人的塔基。翻开顶级车手的履历，绝大多数人的第一辆「赛车」都是卡丁车，很多人从七八岁就开始。原因很简单：卡丁车把赛车最核心的东西——走线、刹车点、出弯加速、轮对轮的攻防——浓缩进了一台便宜又安全的小车里。",
-            "卡丁车贴地、没有悬挂，速度的「体感」被放大了：明明时速不算很高，坐在离地几厘米的座椅里，每个弯都惊心动魄。正是这种诚实的反馈，让它成为最好的老师——你做错了一个动作，车会立刻告诉你，没有电子辅助替你掩盖。",
-            "它也是真正的「平民入口」。相比动辄天价的方程式赛车，卡丁车场按时段就能租，一身基础护具加一顶头盔就能下场，很多城市的商场、郊区都有场地。换句话说，你不需要先成为车手，才能体验当车手的感觉——这个周末就可以。",
-            "所以无论你的目标是认真往上走，还是单纯想尝一口赛车的滋味，卡丁车都是那个「迈出第一步」成本最低、回报最直接的地方。先去开一次，你对这项运动的所有想象，都会变得具体起来。",
+            "如果说方程式赛车是金字塔顶端，卡丁车就是几乎所有人的塔基。翻开顶级车手的履历，绝大多数人的第一辆「赛车」都是卡丁车，许多人从七八岁就开始。原因很直接：卡丁车把赛车最核心的东西——走线、刹车点、出弯加速、轮对轮的攻防——浓缩进了一台便宜又安全的小车里。",
+            "卡丁车贴地而坐、几乎没有悬挂，速度的「体感」被放大：实际时速并不算高，但坐在离地几厘米的座椅里，每个弯都惊心动魄。正是这种诚实的反馈让它成为最好的老师——做错一个动作，车会立刻告诉你，没有电子辅助替你掩盖。",
+            "卡丁车本身也是正式竞技项目，由 FIA Karting（前身 CIK-FIA）监管，设有世界锦标赛与欧洲锦标赛。其级别分为三大类：直驱组（成人顶级 OK、青少年 OK-Junior，均为 125cc）、带变速箱的 KZ 组，以及带整流罩、双缸 250cc 的最快级别 Superkart。许多现代顶级车手——如维斯塔潘、汉密尔顿、舒马赫——都是从卡丁车一路打上来的。",
+            "它也是真正的「平民入口」。相比动辄天价的方程式赛车，卡丁车场可按时段租用，一身基础护具加一顶头盔就能下场，很多城市的商场或郊区都有场地。换句话说，你不需要先成为车手，才能体验当车手的感觉。",
+            "对中国的新手来说，室内电动卡丁车场近年在不少城市普及，按时段计费、无需自备装备，是体验门槛最低的一种方式；想认真练习的人，则可以进入有计时与排位的业余赛事，逐步熟悉真实比赛的节奏，再考虑沿 OK-Junior、OK 等正式级别向上走。",
+            "所以无论目标是认真沿阶梯往上走，还是单纯想尝一口赛车的滋味，卡丁车都是「迈出第一步」成本最低、反馈最直接的地方。先去开一次，你对这项运动的所有想象都会变得具体起来。",
+          ],
+          sources: [
+            { label: "FIA Karting 官方（fiakarting.com）", url: "https://www.fiakarting.com" },
+            {
+              label: "FIA Karting 级别（官方）",
+              url: "https://www.fiakarting.com/page/fia-karting-categories",
+            },
           ],
         },
         {
           tag: "装备",
           title: "需要哪些装备？",
-          body: "头盔、赛服、手套是基础。但新手完全不必一次买齐——社区里就能借到，先体验再说。",
+          body: "头盔、赛服、手套是基础，且多有 FIA 认证标准。但新手不必一次买齐——先租用体验，确定喜欢再逐步添置。",
           read: [
-            "赛车装备的存在只有一个目的：在意外发生时保护你。最核心的是头盔——它保护的是最不能受伤的部位，也是唯一一件强烈建议优先拥有自己那顶的装备（卫生与贴合度的考虑）。其余的护具，多数卡丁车场都能现场租借。",
-            "往下数，常见的还有：连体赛服（耐磨、抗撕裂）、手套（防滑、保护手掌）、合适的赛车鞋，以及越来越被重视的颈部护具。进入更快的车种后，还会加上防火内衣、HANS 头颈支撑系统等。但请注意——这是一份「随着你越走越深才逐渐补齐」的清单，不是入门当天的购物车。",
-            "给新手最实在的建议是：别一次买齐。第一次下场，租来的装备完全够用；真正爱上之后，再按「头盔 → 手套 → 赛服」的顺序慢慢添置自己的。这样你既不会为一时兴起花一大笔钱，又能在确定喜欢后买到真正合身、合用的东西。",
-            "这也正是社区存在的意义之一。在我们的社群里，二手装备转让、新手借用都是常事——很多人的第一顶头盔、第一副手套，都是从邻居手里接过来的。先体验，再拥有，让门槛低到「这个周末就能开始」。",
+            "赛车装备的存在只有一个目的：在意外发生时保护你。最核心的是头盔——它保护最不能受伤的部位，也是唯一强烈建议优先拥有自己那顶的装备（出于卫生与贴合度考虑）。其余护具，多数卡丁车场都能现场租借。",
+            "在正式比赛中，关键装备大多有 FIA 的认证（homologation）标准：例如赛车头盔需符合 FIA 8859 或更高等级的 8860 标准；防火连体赛服需符合 FIA 8856 标准；用于减轻撞击时颈部受力的 HANS 头颈支撑装置则对应 FIA 8858 标准。这些标准是「装备能否用于正式比赛」的硬门槛，也是它们价格不一的原因之一。",
+            "一套常见清单大致是：头盔、连体赛服、手套（防滑、保护手掌）、合脚的赛车鞋，以及颈部护具；进入更快的车种后再加上防火内衣、HANS 等。但请注意——这是一份「随着你越走越深才逐渐补齐」的清单，而不是入门当天的购物车。卡丁车入门所需远比方程式简单：很多场地只要求头盔（可租）加上长袖长裤与运动鞋即可下场。此外还有一些容易被忽略但实用的小件——头套（保持头盔卫生、吸汗）、护肋背心（卡丁车没有悬挂，颠簸时保护肋骨）等，可以等熟悉之后再按需添置。",
+            "给新手最实在的建议是：别一次买齐。第一次下场，租来的装备完全够用；真正爱上之后，再按「头盔 → 手套 → 赛服」的顺序慢慢添置自己的。这样既不会为一时兴起花一大笔钱，又能在确定喜欢后买到真正合身、合用的东西。",
+            "还需提醒的是，这些安全认证多有有效期：过期的头盔、赛服在正式比赛中可能不再被接受，需要更换或重新认证。不过这是「等你认真参赛后才要操心」的事——对刚开始的卡丁车体验者，场地提供的租赁装备已完全够用，不必为这些标准提前花钱。",
+            "这也正是社区存在的意义之一：二手装备转让、新手借用都是常事，很多人的第一顶头盔、第一副手套都是从同好手里接过来的。先体验、再拥有，让门槛低到「这个周末就能开始」。",
+          ],
+          sources: [
+            { label: "FIA 官方（fia.com）", url: "https://www.fia.com" },
+            {
+              label: "FIA Karting 官方（fiakarting.com）",
+              url: "https://www.fiakarting.com",
+            },
           ],
         },
         {
           tag: "术语",
           title: "听懂赛场黑话",
-          body: "DRS、Pole、Pit、Apex……这些词第一次听像天书，懂了之后，比赛会瞬间精彩起来。",
+          body: "DRS、Pole、Pit、Apex…这些词第一次听像天书，但只要掌握十来个高频词，整场比赛的语言就通了大半。",
           read: [
-            "第一次看比赛，最劝退的往往不是规则，而是解说嘴里一连串听不懂的「黑话」。但其实只要掌握几个高频词，整场比赛的语言就通了大半。下面这几个，是最值得先记住的。",
-            "Pole（杆位）：排位赛最快、周日发车第一名的位置。Pit / Pit stop（进站）：赛车驶入维修区换胎、调整的过程，是策略的核心。Apex（弯心）：一个弯里最靠内的那个点，车手过弯追求的「最佳走线」就是奔着它去的——走得准，出弯就更快。",
-            "DRS（可调式尾翼）：在指定路段、且与前车足够接近时，后车可以打开尾翼减少风阻、提高直线速度，专门用来帮助超车。Undercut / Overcut（提前进站 / 延后进站）：两种靠进站时机抢位置的经典套路——前者赌新胎的瞬时优势，后者赌多跑几圈的空当。",
-            "Box, box（进站指令）：车队让车手进站的暗号，因为无线电里「box」比「pit」更不容易听错。还有 Formation lap（暖胎圈）、Safety Car（安全车）、Stint（一段轮胎的使用周期）……你不必一次全记住。挑三五个，下次看比赛时留意它们出现的时机，几场下来，解说的话就会从噪音变成剧情。",
+            "第一次看比赛，最劝退的往往不是规则，而是解说嘴里一连串听不懂的「黑话」。其实只要掌握十来个高频词，整场比赛的语言就通了大半。下面按出现频率挑出最值得先记住的。",
+            "Pole（杆位）：排位赛最快、周日发车第一位。Grid（发车格）：起跑时各车排定的位置。Apex（弯心）：一个弯里最靠内的那个点，车手过弯追求的「最佳走线」就是奔它而去——走得准，出弯就更快。Stint（一段轮胎周期）：从换上一套胎到换下为止的连续行驶段。",
+            "Pit / Pit stop（进站）：赛车驶入维修区换胎、调整的过程，是策略核心；无线电里常用「Box, box」下达进站指令，因为「box」比「pit」更不易听错。Undercut / Overcut（提前 / 延后进站）：两种靠进站时机抢位置的套路——前者赌新胎的瞬时优势，后者赌多跑几圈的空当。",
+            "DRS（可调式尾翼）：后车在指定区域、与前车足够接近时打开尾翼以减小风阻、辅助超车。Slipstream / Tow（尾流借力）：紧跟前车以减小风阻、提高直线速度。Formation lap（暖胎圈）：正赛起跑前的整队圈。Safety Car / VSC（安全车 / 虚拟安全车）：用于在危险路段统一压低车速。Parc fermé（围场封闭）：排位后赛车被封存、不得再做实质改动。",
+            "再补几个解说里几乎每场都会出现的：Lap（圈）与 Lap time（单圈时间）；Backmarker（被套圈的慢车）；Pit lane（维修道）与 Pit wall（车队指挥墙）；Tyre degradation（轮胎衰退）；Lock-up（刹车抱死，常伴随轮胎冒烟与平点）；Dirty air（前车搅乱的乱流，会削弱后车的下压力，使其更难紧跟）。",
+            "你不必一次全记住。挑三五个，下次看比赛时留意它们出现的时机，几场下来，解说的话就会从噪音变成剧情。",
+          ],
+          sources: [
+            { label: "Formula 1 官方（formula1.com）", url: "https://www.formula1.com" },
+            { label: "FIA 官方（fia.com）", url: "https://www.fia.com" },
           ],
         },
         {
           tag: "行动",
           title: "找到你的入口",
-          body: "模拟器、卡丁车场、社区活动——三条路任你选。最重要的一步，永远是迈出的第一步。",
+          body: "模拟器、卡丁车场、社区活动——三条路任你选，成本都不高。最重要的一步，永远是迈出的第一步。",
           read: [
-            "看了这么多，最后只剩一个问题：从哪儿开始？好消息是，离赛车最近的入口，几乎每个人触手可及，而且都不贵。",
-            "第一条路，模拟器。一套像样的方向盘加一台电脑，就能在客厅里跑遍世界名赛道。别小看它——很多职业车手也用模拟器练走线、记赛道。它几乎零风险，让你在花一分钱去真实场地前，先把「赛车的语言」练熟。",
-            "第二条路，卡丁车场。这是从「看」到「开」最关键的一跃。租一台卡丁车，戴上头盔下场，你会第一次真切体会到刹车点、出弯加速到底是什么感觉。哪怕只是和朋友去玩一次，那种体感也会彻底改变你看比赛的方式。",
-            "第三条路，也是我们最想邀请你走的——社区。一个人入门容易卡在「下一步做什么」，但一群人就不一样了：有人带你认识规则，有人约你一起去卡丁车场，有人把闲置的装备借给你。赛车从来不只是个人的速度游戏，它也是一群同好彼此点燃的热爱。",
-            "所以，别等「准备好了」再开始——没有人是先准备好才出发的。挑一条最顺手的路，这个周末就迈出第一步。我们在终点，也在起点，等你。",
+            "看了这么多，最后只剩一个问题：从哪儿开始？好消息是，离赛车最近的入口几乎人人触手可及，而且都不贵。下面三条路，可以从任意一条起步。",
+            "第一条，模拟器。一套像样的方向盘加一台电脑，就能在家里跑遍世界名赛道。别小看它——许多职业车手也用模拟器练走线、记赛道。它几乎零风险，让你在花钱去真实场地前，先把「赛车的语言」练熟：走线、刹车点、入弯出弯的节奏。",
+            "第二条，卡丁车场。这是从「看」到「开」最关键的一跃。租一台卡丁车、戴上头盔下场，你会第一次真切体会到刹车点与出弯加速到底是什么感觉。卡丁车相对便宜、安全、上手快，哪怕只是和朋友去玩一次，那种体感也会彻底改变你看比赛的方式。",
+            "第三条，社区。一个人入门容易卡在「下一步做什么」，而一群同好就不同：有人带你认识规则，有人约你一起去卡丁车场，有人把闲置装备借给你。赛车不只是个人的速度游戏，社区能显著降低门槛、让你少走弯路——这也正是 OpenGrid 想做的事。",
+            "具体怎么迈第一步？模拟器可以从一套入门级力反馈方向盘起步，配合常见的赛车游戏即可上路；卡丁车场建议先选室内场、按时段租赁，跟着工作人员把安全讲解与流程走一遍；至于社区，最简单的方式就是加入一个本地或线上的同好群，先看别人怎么玩、再约一次线下活动。三步里任意一步，今天就能开始。",
+            "不必等「准备好了」再开始：挑一条最顺手的路，这个周末就迈出第一步。三条路并不互斥，很多人是先在模拟器上手，再去卡丁车场，最后在社区里找到长期一起玩的人。也不必给自己设时间表——有人一年只去两三次卡丁车场，纯粹图个开心；有人则把它当作认真的爱好，逐年往更高级别走。无论哪一种，重要的都是先开始、再慢慢找到属于自己的节奏；当你回头看，会发现真正难的从来不是技术，而是迈出第一步的那一下。",
+          ],
+          sources: [
+            { label: "FIA Karting 官方（fiakarting.com）", url: "https://www.fiakarting.com" },
+            { label: "Formula 1 官方（formula1.com）", url: "https://www.formula1.com" },
           ],
         },
       ],
@@ -650,72 +704,119 @@ export const copy: Record<Lang, Content> = {
         "Never followed it? No problem. A few minutes to clear the very first hurdle.",
       readMore: "Read more",
       close: "Close",
+      sourceLabel: "Sources",
       cards: [
         {
           tag: "Basics",
           title: "What is F1?",
-          body: "Formula 1 is the pinnacle of motorsport: the fastest cars and finest drivers, racing for the title across 20-plus circuits worldwide.",
+          body: "Formula 1 is the top class of single-seater, open-wheel racing: FIA-governed, with drivers and teams contesting two world titles across 20-plus circuits a year.",
           read: [
-            "The \"formula\" in Formula 1 isn't math — it's a single rulebook every team must obey. The size of the car, the kind of engine, the limits of its aerodynamics: all of it is written down by the FIA, the sport's governing body. Everyone builds under the same formula, which means the contest is as much between hundreds of engineers as it is between drivers. That's why F1 is called the pinnacle of motorsport: it distills the engineering limits of human speed into a single sport.",
-            "An F1 team chases two trophies at once. One is the Drivers' Championship, awarded to the single driver with the most points across the season. The other is the Constructors' Championship, which adds up the points of a team's two drivers. So you'll often see teammates both fighting side by side and quietly fighting each other — they need each other to win the team title, yet each wants to be the one who stands on top.",
-            "The car itself is an extreme object: a carbon-fibre body that's almost impossibly light, a hybrid power unit that marries a combustion engine to energy recovery, and downforce in the corners strong enough to glue the car to the track. But no matter how fast the car, a human has to wrestle it for two or three hours without a break — heart rate near an athlete's limit, making millisecond decisions at hundreds of kilometres per hour.",
-            "If you're just starting out, don't let the numbers scare you off. Hold on to one idea: F1 is the fastest cars, the finest humans, and the smartest engineering, all racing on the same track. Once that clicks, qualifying, pit stops and tyre strategy are just different faces of that same contest.",
+            "Formula 1 (F1) is the highest class of single-seater, open-wheel racing, with its sporting and technical rules set and governed by the FIA and the championship promoted commercially by the Formula One group. The word \"formula\" isn't math — it's the shared set of technical rules every team must obey, defining car dimensions, aerodynamics, the type of power unit and minimum weight. Within those rules each team designs and builds its own car, so the contest is as much between hundreds of engineers as between drivers.",
+            "Two world titles run in parallel each season: the Drivers' Championship, for the driver with the most points, and the Constructors' Championship, which sums a team's two drivers' points. Only the top ten score in a race: 25, 18, 15, 12, 10, 8, 6, 4, 2, 1. From 2025 the bonus point for fastest lap was removed.",
+            "Current cars use a 1.6-litre V6 turbo-hybrid power unit with energy recovery (ERS), built around a carbon-fibre monocoque that protects the driver. The downforce generated in corners lets the car take them far faster than everyday intuition suggests, while the driver sustains near-athlete physical loads for a race lasting an hour or two.",
+            "A standard weekend is usually two Friday practices, a third practice plus qualifying on Saturday, and the race on Sunday; some rounds add a short Saturday 'Sprint'. Two modern rules also shape the order: a cost cap that limits each team's annual spend to narrow the gap between big and small teams, and DRS (the adjustable rear wing) to aid overtaking.",
+            "The F1 World Championship has run since 1950 and is one of the oldest and largest racing series in the world. If you're just starting out, hold on to one idea: F1 is the fastest cars, the finest drivers and the strongest engineering teams competing under one set of rules — once that clicks, qualifying, pit stops and tyre strategy are just facets of the same contest.",
+          ],
+          sources: [
+            { label: "Formula 1 official (formula1.com)", url: "https://www.formula1.com" },
+            {
+              label: "FIA regulations (fia.com)",
+              url: "https://www.fia.com/regulation/category/110",
+            },
           ],
         },
         {
           tag: "Watching",
           title: "How do you watch a race?",
-          body: "A race weekend splits into practice, qualifying and the race. The drama lives in pit strategy, tire choices and millisecond overtakes.",
+          body: "A weekend splits into practice, qualifying and the race; the drama lives in qualifying, the start, tyres and pit strategy, and millisecond overtakes.",
           read: [
-            "An F1 weekend isn't just Sunday. It usually unfolds in three steps. First comes practice, where teams dial in the car and test different tyres. Then qualifying, run in knock-out segments, where a single fastest lap decides where you start on Sunday. Only then comes the race itself — the moment that actually settles the title. Understand those three steps and you'll never again be confused by Friday's \"non-racing\": it's laying the traps for Sunday.",
-            "Qualifying decides the starting order, and the starting order often shapes the first half of the race. The very front spot is called pole position, the reward for one perfect lap. But the start is only the beginning: the instant the lights go out, the scramble into turn one can rewrite that hard-won order in a matter of seconds.",
-            "The real undercurrent of a race is tyres and pit stops. Softer tyres are faster but wear out sooner; when to pit and which compound to fit is a gamble that runs the whole race. A flawless stop takes only two or three seconds — lose one, and you can hand the lead away. So when the commentators start asking \"should they box now?\", that's usually the hinge the race turns on.",
-            "As for the most visible thrill — overtaking — it happens in the heavy braking zones at the end of straights, or in the instant a car slips into the slipstream of the one ahead. You don't need to watch every car. Pick two or three drivers you like and follow their rhythm: who they're chasing, who's chasing them, how much tyre they have left. Do that, and a race turns from \"cars going in circles\" into a chess game you can actually read.",
+            "An F1 weekend isn't just Sunday. It usually unfolds in three steps: practice, where teams dial in the car and test tyres; qualifying, run in knock-out segments, where a single fastest lap sets Sunday's grid; and only then the race. Understand those three steps and you'll never again be confused by Friday's 'non-racing' — it is preparation for Sunday.",
+            "Qualifying runs as Q1, Q2 and Q3: each segment eliminates the slowest drivers, and the ten fastest contest pole position (first on the grid) in Q3, with everyone else gridded by their best lap. The starting order often shapes the first half of the race, but the start is only the beginning: the instant the lights go out, the scramble into turn one can rewrite it in seconds.",
+            "The real undercurrent of a race is tyres and pit stops. In a dry race each driver must use at least two different dry compounds, so a stop is normally required. Softer tyres are faster but wear sooner; when to pit and which compound to fit is a season-long gamble, and a flawless stop takes only two or three seconds. This is where 'undercut' (pitting earlier) and 'overcut' (pitting later) come from.",
+            "The most visible thrill, overtaking, happens in the heavy braking zones at the end of straights or as a car slips into the slipstream of the one ahead. The rules help: DRS lets a following car open its rear wing in designated zones, when close enough, to cut drag and gain speed. Flags, the Safety Car and the Virtual Safety Car (VSC) are used to slow the field through hazards.",
+            "Weather is another variable: in the rain drivers switch to intermediate or full wet tyres, and gambling on the right tyre as conditions change can decide the result. When the Safety Car bunches the field, hard-won gaps reset to almost nothing, putting the race back on a near-equal footing — which can both wipe out a leader's advantage and hand a chaser the chance to pounce, making it a frequent turning point.",
+            "A tip for newcomers: don't watch every car. Pick two or three drivers and follow their rhythm — who they're chasing, who's chasing them, how much tyre they have left, when they pit. Over a few races, a Grand Prix turns from 'cars going in circles' into a chess game you can actually read.",
+          ],
+          sources: [
+            { label: "Formula 1 official (formula1.com)", url: "https://www.formula1.com" },
+            {
+              label: "FIA regulations (fia.com)",
+              url: "https://www.fia.com/regulation/category/110",
+            },
           ],
         },
         {
           tag: "Start",
           title: "Karting: the best start",
-          body: "Almost every F1 driver began in karts. Cheap, safe and quick to learn — it's the closest ordinary people get to racing.",
+          body: "Almost every top driver began in karts. Relatively cheap, safe and quick to learn, it's the closest ordinary people get to real racing.",
           read: [
-            "If F1 is the top of the pyramid, karting is the base almost everyone stands on. Read any top driver's biography and their first \"race car\" was almost always a kart, many of them starting at seven or eight years old. The reason is simple: karting distils the core of racing — lines, braking points, corner exits, wheel-to-wheel combat — into a machine that's cheap and safe.",
-            "A kart sits low to the ground and has no suspension, so the sensation of speed is amplified. The actual velocity isn't that high, yet strapped into a seat a few centimetres off the tarmac, every corner is heart-in-mouth. That honest feedback is exactly what makes it the best teacher — do something wrong and the kart tells you instantly, with no electronics to paper over your mistake.",
-            "It's also a genuinely accessible entry point. Compared with the eye-watering cost of formula cars, a kart can be rented by the session; basic protective gear and a helmet are enough to get on track, and many cities have venues at malls or just outside town. In other words, you don't have to become a driver before you can feel like one — you can do it this weekend.",
-            "So whether your goal is to climb the ladder for real or simply to taste what racing feels like, karting is where \"the first step\" costs the least and rewards you most directly. Go drive one once, and every idea you've ever had about this sport suddenly becomes concrete.",
+            "If formula cars are the top of the pyramid, karting is the base almost everyone stands on. Read any top driver's biography and their first 'race car' was almost always a kart, many starting at seven or eight. The reason is simple: karting distils the core of racing — lines, braking points, corner exits, wheel-to-wheel combat — into a machine that's cheap and safe.",
+            "A kart sits low to the ground with almost no suspension, so the sense of speed is amplified: the actual velocity isn't high, yet a few centimetres off the tarmac every corner is heart-in-mouth. That honest feedback makes it the best teacher — do something wrong and the kart tells you instantly, with no electronics to cover for you.",
+            "Karting is also a serious sport in its own right, governed by FIA Karting (formerly CIK-FIA) with World and European Championships. Its classes fall into three families: direct-drive (the senior OK and junior OK-Junior, both 125cc), gearbox karts (KZ) and the fastest of all, the twin-cylinder 250cc Superkart. Many modern stars — Verstappen, Hamilton, Schumacher — came up through karts.",
+            "It is also genuinely accessible. Compared with the eye-watering cost of formula cars, a kart can be rented by the session; basic gear and a helmet are enough to get on track, and many cities have venues at malls or just outside town. You don't have to become a driver before you can feel like one.",
+            "For a complete beginner, indoor electric kart venues — now common in many cities, billed by the session with gear provided — are the lowest-barrier way to try it. Those who want to practise seriously can move into amateur events with timing and qualifying to learn the rhythm of real racing, then consider climbing the formal ladder through classes like OK-Junior and OK.",
+            "So whether your goal is to climb the ladder for real or just to taste what racing feels like, karting is where the first step costs least and rewards you most directly. Go drive one once, and every idea you've had about the sport becomes concrete.",
+          ],
+          sources: [
+            { label: "FIA Karting official (fiakarting.com)", url: "https://www.fiakarting.com" },
+            {
+              label: "FIA Karting categories (official)",
+              url: "https://www.fiakarting.com/page/fia-karting-categories",
+            },
           ],
         },
         {
           tag: "Gear",
           title: "What gear do you need?",
-          body: "Helmet, suit and gloves are the basics. But you needn't buy it all at once — borrow from the community and just try it first.",
+          body: "Helmet, suit and gloves are the basics, most carrying FIA homologation standards. But don't buy it all at once — rent first, then add your own.",
           read: [
-            "Racing gear exists for one purpose: to protect you when something goes wrong. The most essential piece is the helmet — it guards the part you can least afford to injure, and it's the one item worth owning yourself sooner rather than later, for hygiene and fit. Most of the rest can be rented right at the track.",
-            "Beyond that, the usual list runs: a one-piece suit (abrasion- and tear-resistant), gloves (grip and palm protection), proper racing boots, and — increasingly valued — a neck brace. Move up to faster categories and you'll add fireproof underlayers, a HANS head-and-neck device, and more. But note: this is a list you fill in gradually as you go deeper, not a shopping cart for day one.",
-            "The most practical advice for a beginner is: don't buy it all at once. For your first time on track, rented gear is plenty. Once you've genuinely fallen for it, add your own in the order helmet → gloves → suit. That way you neither blow a pile of money on a passing whim, nor miss out on gear that actually fits once you know you love it.",
-            "And this is exactly one of the things a community is for. In our circles, passing on second-hand gear and lending kit to newcomers is routine — plenty of people's first helmet or first pair of gloves came from a neighbour. Try first, own later, and keep the barrier low enough that \"this weekend\" is a real answer.",
+            "Racing gear exists for one purpose: to protect you when something goes wrong. The most essential piece is the helmet — it guards the part you can least afford to injure, and is the one item worth owning yourself sooner rather than later, for hygiene and fit. Most of the rest can be rented right at the track.",
+            "In formal competition, key gear carries FIA homologation standards: race helmets must meet FIA 8859 or the higher 8860; a fireproof one-piece suit must meet FIA 8856; and the HANS head-and-neck device, which reduces neck loads in an impact, corresponds to FIA 8858. These standards are the hard gate for whether kit can be used in real racing — and part of why prices vary so widely.",
+            "A typical list runs: helmet, one-piece suit, gloves (grip and palm protection), proper boots and a neck brace; faster categories add fireproof underlayers, a HANS device and more. But this is a list you fill in gradually as you go deeper, not a shopping cart for day one — karting entry needs far less than formula racing: many venues only require a helmet (rentable) plus long sleeves, long trousers and trainers to get on track. There are also small but useful items that are easy to overlook — a balaclava (keeps the helmet hygienic and wicks sweat) and a rib protector (a kart has no suspension, so it shields the ribs over bumps) — which you can add later as needed.",
+            "The most practical beginner advice: don't buy it all at once. For your first time on track, rented gear is plenty. Once you've genuinely fallen for it, add your own in the order helmet → gloves → suit, so you neither blow money on a whim nor miss out on gear that truly fits.",
+            "It's also worth knowing that these safety certifications have expiry dates: an out-of-date helmet or suit may no longer be accepted in formal competition and will need replacing or re-certifying. But that's a concern for once you're racing seriously — for a first karting outing, the venue's rental gear is more than enough, with no need to spend on these standards up front.",
+            "This is also exactly what a community is for: passing on second-hand gear and lending kit to newcomers is routine, and plenty of people's first helmet or gloves came from a fellow enthusiast. Try first, own later, and keep the barrier low enough that 'this weekend' is a real answer.",
+          ],
+          sources: [
+            { label: "FIA official (fia.com)", url: "https://www.fia.com" },
+            {
+              label: "FIA Karting official (fiakarting.com)",
+              url: "https://www.fiakarting.com",
+            },
           ],
         },
         {
           tag: "Jargon",
           title: "Crack the race-day slang",
-          body: "DRS, Pole, Pit, Apex… gibberish the first time, but once they click the race comes alive.",
+          body: "DRS, Pole, Pit, Apex… gibberish at first, but learn a dozen high-frequency terms and most of the race's language opens up.",
           read: [
-            "The first time you watch a race, what puts people off usually isn't the rules — it's the stream of slang pouring out of the commentary. But master just a handful of high-frequency terms and most of the race's language opens up. These are the ones worth learning first.",
-            "Pole: the fastest spot in qualifying and first on the grid for Sunday. Pit / pit stop: when a car comes into the lane to change tyres and make adjustments — the heart of strategy. Apex: the innermost point of a corner; the \"ideal line\" a driver chases is aimed right at it, because hit it well and you exit faster.",
-            "DRS (the adjustable rear wing): in designated zones, and when close enough behind the car ahead, the following car can open its wing to cut drag and gain straight-line speed — built specifically to help overtaking. Undercut / overcut (pitting earlier / later): two classic ways to steal a position through pit timing — one bets on the instant grip of fresh tyres, the other on running a few extra laps in clear air.",
-            "\"Box, box\": the call telling a driver to pit, used because over the radio \"box\" is harder to mishear than \"pit\". Then there's the formation lap, the safety car, a stint (one tyre's life cycle)… you don't have to memorise them all at once. Pick three to five, watch for when they show up next time, and over a few races the commentary turns from noise into story.",
+            "The first time you watch a race, what puts people off usually isn't the rules — it's the stream of slang from the commentary. Master a dozen or so high-frequency terms and most of the race's language opens up. Here are the ones worth learning first, picked by how often they come up.",
+            "Pole: fastest in qualifying and first on the grid. Grid: the starting positions. Apex: the innermost point of a corner, which the 'ideal line' is aimed at — hit it well and you exit faster. Stint: a continuous run on one set of tyres, from fitting to removal.",
+            "Pit / pit stop: coming into the lane to change tyres and adjust the car — the heart of strategy; the radio call is often 'Box, box', because 'box' is harder to mishear than 'pit'. Undercut / overcut: stealing a position through pit timing — pitting earlier to use fresh-tyre grip, or later to run a few laps in clear air.",
+            "DRS (the adjustable rear wing): opened in designated zones, when close enough behind, to cut drag and aid overtaking. Slipstream / tow: tucking behind a car to reduce drag and gain straight-line speed. Formation lap: the lap that forms up the grid before the start. Safety Car / VSC: used to slow the field through hazards. Parc fermé: the car is sealed after qualifying and may not be significantly changed.",
+            "A few more you'll hear almost every race: lap and lap time; backmarker (a slower, lapped car); pit lane and pit wall (the team's command stand); tyre degradation (tyres losing grip as they wear); lock-up (a braking wheel that locks, often smoking and flat-spotting the tyre); and dirty air (the turbulent wake off a leading car that cuts the following car's downforce and makes it harder to follow closely).",
+            "You don't have to memorise them all at once. Pick three to five, watch for when they show up next time, and over a few races the commentary turns from noise into story.",
+          ],
+          sources: [
+            { label: "Formula 1 official (formula1.com)", url: "https://www.formula1.com" },
+            { label: "FIA official (fia.com)", url: "https://www.fia.com" },
           ],
         },
         {
           tag: "Action",
           title: "Find your way in",
-          body: "Sims, karting tracks, community events — three paths in. The one that matters most is always the first step.",
+          body: "Sims, karting tracks, community — three low-cost paths in. The one that matters most is always the first step.",
           read: [
-            "After all of this, one question remains: where do you start? The good news is that the closest entry to racing is within almost anyone's reach — and none of it is expensive.",
-            "Path one: the simulator. A decent wheel and a computer let you lap the world's great circuits from your living room. Don't underestimate it — plenty of professional drivers use sims to learn lines and memorise tracks. It's nearly risk-free, and it lets you master the language of racing before you spend a cent at a real venue.",
-            "Path two: the karting track. This is the crucial leap from watching to driving. Rent a kart, put on a helmet, get on track, and you'll feel for the first time what braking points and corner exits actually are. Even a single outing with friends will change the way you watch a race forever.",
-            "Path three — and the one we most want to invite you to take — is the community. Alone, it's easy to get stuck on \"what's the next step\"; with a group of people, everything changes. Someone walks you through the rules, someone invites you to the kart track, someone lends you the gear they no longer use. Racing was never only a solitary game of speed — it's also a shared passion that people light in one another.",
-            "So don't wait until you're \"ready\" to begin — nobody ever sets off fully ready. Pick the path that suits you best, and take the first step this weekend. We'll be waiting for you at the finish, and at the start.",
+            "After all of this, one question remains: where do you start? The good news is that the closest entry to racing is within almost anyone's reach, and none of it is expensive. Here are three paths — you can begin with any one.",
+            "Path one: the simulator. A decent wheel and a computer let you lap the world's great circuits from home. Don't underestimate it — many professional drivers use sims to learn lines and memorise tracks. It's nearly risk-free, and it lets you master the language of racing — lines, braking points, the rhythm of corners — before spending a cent at a real venue.",
+            "Path two: the karting track. This is the crucial leap from watching to driving. Rent a kart, put on a helmet, get on track, and you'll feel for the first time what braking points and corner exits really are. Karting is relatively cheap, safe and quick to learn, and even a single outing with friends will change how you watch a race.",
+            "Path three: the community. Alone, it's easy to get stuck on 'what's the next step'; with a group of fellow fans everything changes — someone walks you through the rules, someone invites you to the kart track, someone lends you gear they no longer use. A community noticeably lowers the barrier and saves you wrong turns, which is exactly what OpenGrid is for.",
+            "How do you actually take that first step? For a sim, start with an entry-level force-feedback wheel and a common racing game. For a kart track, pick an indoor venue, rent by the session, and walk through the safety briefing and procedure with the staff. For the community, the simplest move is to join a local or online group of fellow fans — watch how others do it, then turn up to one in-person outing. Any of the three can begin today.",
+            "Don't wait until you're 'ready' to begin: pick the path that suits you best and take the first step this weekend. The three paths aren't mutually exclusive — many people start on a sim, then visit a kart track, and finally find their regular crew in a community. And don't put yourself on a schedule — some people visit a kart track a couple of times a year purely for fun, while others treat it as a serious hobby and climb the classes over time. Either way, what matters is starting first and finding your own pace; looking back, the hard part was never the skill, but taking that first step.",
+          ],
+          sources: [
+            { label: "FIA Karting official (fiakarting.com)", url: "https://www.fiakarting.com" },
+            { label: "Formula 1 official (formula1.com)", url: "https://www.formula1.com" },
           ],
         },
       ],

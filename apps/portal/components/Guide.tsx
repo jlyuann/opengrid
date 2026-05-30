@@ -11,6 +11,7 @@ import {
   ArticleTitle,
   ArticleLead,
   ArticleP,
+  SectionLabel,
 } from "@opengrid/ui";
 
 export function Guide() {
@@ -76,6 +77,23 @@ export function Guide() {
             {active.read.map((para, i) => (
               <ArticleP key={i}>{para}</ArticleP>
             ))}
+
+            {/* 资料来源 */}
+            <SectionLabel>{t.sourceLabel}</SectionLabel>
+            <div className="mt-4 flex flex-wrap gap-2.5">
+              {active.sources.map((s) => (
+                <a
+                  key={s.url}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 rounded-full border border-[var(--page-hairline)] px-3.5 py-1.5 text-sm text-[var(--page-fg-soft)] transition-colors hover:border-[var(--page-fg)] hover:text-[var(--page-fg)]"
+                >
+                  {s.label}
+                  <span aria-hidden>↗</span>
+                </a>
+              ))}
+            </div>
           </>
         )}
       </Reader>
