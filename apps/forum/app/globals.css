@@ -1,0 +1,6 @@
+@import "tailwindcss";
+/* 共享设计系统：@theme / @property / 整页主题层 / .page-bg / 字体栈等，
+   全部抽到 @opengrid/ui 的 tokens.css，门户站与论坛站共用、保证跨端一致。 */
+@import "../../../packages/ui/src/tokens.css";
+/* 让 Tailwind v4 也扫描共享组件里的类名（否则 @opengrid/ui 组件的 class 会被漏掉）。 */
+@source "../../../packages/ui/src";
