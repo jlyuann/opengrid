@@ -451,39 +451,43 @@ export const copy: Record<Lang, Content> = {
           name: "Karting",
           full: "卡丁车",
           concept:
-            "场地赛车的入门基石——小巧轻量、无悬挂、多为两冲程发动机的单座小车。它被公认为通往职业赛车的「起跑线」:相对便宜、易上手,又能教会走线、起步、超车、贴身防守等所有基本功。它本身也是有 FIA 世界与欧洲锦标赛的正式竞技项目。",
+            "卡丁车是场地赛车的入门基石——小巧轻量、几乎无悬挂、贴地而坐的单座小车，发动机以两冲程为主。它被公认为通往职业赛车的「起跑线」：相对便宜、易上手，又能在最纯粹的层面教会走线、刹车点、起步、超车与贴身防守等一切基本功。由于贴地、没有悬挂，速度的「体感」被放大，对操作的反馈极其诚实——做错一个动作，车会立刻告诉你。卡丁车同时也是有自己 FIA 世界锦标赛与欧洲锦标赛的正式竞技项目，由 FIA Karting（前身为 CIK-FIA）监管，并非只是娱乐设施。",
           rules: [
-            "由 FIA Karting（原 CIK-FIA）监管,大类分为直驱卡丁、带变速箱卡丁与 Superkart。",
-            "职业阶梯按年龄/排量分级:Mini（少儿）→ OK-Junior（青少年,125cc 水冷）→ OK（成人顶级,125cc）。",
-            "KZ 为带变速箱的 125cc 级别（KZ1 / KZ2）;Superkart 为双缸 250cc、近 100 马力的最快级别,只在长赛道跑。",
-            "几乎每位现代顶级车手都从卡丁车起步。",
+            "三大类别：FIA Karting 的世界锦标赛级别分为三大家族——直驱卡丁、带变速箱卡丁与 Superkart，它们都以两冲程发动机为共同技术基础。",
+            "直驱组：顶级为 OK（成人，14 岁起，125cc，2016 年起改用推车起步、简化电子设备）；青少年组为 OK-Junior（12–14 岁，125cc 水冷、带离合与电启动，并设转速上限），另有为降低成本而设的简化版 OKN-Junior。",
+            "变速箱组（KZ）：125cc、簧片进气、六前速序列变速箱；KZ1 与 KZ2 技术几乎一致，主要按车手资历与成绩区分，近年还增设面向 35 岁以上的 KZ2-Masters。",
+            "Superkart：最特殊的一类——带整流罩、双缸 250cc、近 100 马力，车手近乎躺姿驾驶，只能在长赛道充分发挥，单圈速度可媲美不少高级方程式。",
+            "赛事：FIA 主办世界锦标赛与欧洲锦标赛，另有通常在法国勒芒举办的 CIK-FIA 耐力锦标赛，以及亚太等各洲锦标赛。",
           ],
           extra:
-            "维斯塔潘、汉密尔顿、舒马赫都是从卡丁车一路打上来的;维斯塔潘更在 2013 一年内连夺三项 CIK-FIA 大赛冠军,堪称卡丁车时代的统治级表现。",
+            "几乎每位现代顶级车手都从卡丁车起步：维斯塔潘、汉密尔顿、舒马赫都是一路从卡丁车打上来的，维斯塔潘更在 2013 年一年之内连夺多项 CIK-FIA 大赛冠军，是卡丁车时代的统治级表现。正因为它把赛车最核心的东西浓缩进一台便宜又安全的小车，卡丁车既是冠军的摇篮，也是普通人离「真正的赛车」最近、成本最低的入口——这个周末就能去开一次。",
           sources: [
-            { label: "FIA Karting 官方", url: "https://www.fiakarting.com" },
-            { label: "FIA（国际汽联）", url: "https://www.fia.com" },
+            { label: "FIA Karting 官方（fiakarting.com）", url: "https://www.fiakarting.com" },
+            {
+              label: "FIA Karting 级别与竞赛规则（官方）",
+              url: "https://www.fiakarting.com/page/fia-karting-categories",
+            },
           ],
         },
         {
           name: "GT",
           full: "GT3 / 房车赛",
           concept:
-            "GT（Grand Touring）赛事让基于量产车改装的双座跑车同场竞技——法拉利、保时捷、宝马、奔驰 AMG、奥迪、兰博基尼、迈凯伦等品牌的「街车赛车版」。其中 GT3 是当今全球统一、最主流的「客户赛车」级别,让私人车队也能买来厂商造好的赛车下场。",
+            "GT（Grand Touring）赛事让基于量产跑车开发的赛车同场竞技——法拉利、保时捷、宝马、奔驰 AMG、奥迪、兰博基尼、迈凯伦等品牌的「街车赛车版」。其中 GT3 是当今全球统一、最主流的「客户赛车（customer racing）」级别：厂商把赛车造好出售，私人车队买来即可下场，无需自研。GT3 这一级别本身就源于 SRO 摩托运动集团向 FIA 提出的框架，如今技术规则由 FIA 定义；要取得 GT3 认证，厂商通常须先量产足够数量的对应公路车型，赛车再经台架、风洞与赛道测试。全球最具代表性的平台是 SRO 运营的 GT World Challenge，覆盖欧洲、亚洲、美洲、澳洲多个洲际系列。",
           rules: [
-            "GT3 技术规则由 FIA 定义;全球最具代表性的平台是 SRO 运营的 GT World Challenge。",
-            "因前置、中置、后置发动机的车同场竞争,靠「性能平衡（BoP)」调整重量、功率、空气动力,让各品牌势均力敌。",
-            "赛季分「Sprint（短程冲刺）」与「Endurance（耐力)」两类,各有冠军。",
-            "车手按铂金/金/银/铜分级,通过等级搭配规则,让业余「绅士车手」也能与职业车手同场竞争。",
+            "性能平衡（BoP）：前置、中置、后置发动机、不同品牌的车同场竞争，SRO 依据 ECU 数据、GPS、台架与风洞测试，调整重量、涡轮增压/进气限制、离地高度与油箱等，让各车势均力敌；BoP 在赛前公布，且不随比赛结果变化。",
+            "车手分级：SRO 把车手分为铂金/金/银/铜等级，并据此把车组划入 Pro、Gold、Silver、Bronze、Pro-Am 等组别，让职业车手与业余「绅士车手」能按规则搭配、同场竞争。",
+            "两种赛制：分「Sprint（短程冲刺）」与「Endurance（耐力）」两个系列，各约五站；Sprint 每个周末为两场约一小时、双人共驾、含强制换人的短程赛，Endurance 多为 3 至 6 小时、三人共驾。",
+            "总冠军：把 Sprint 与 Endurance 两个系列的积分合并，决出 GT World Challenge 的年度车手与车队总冠军。",
           ],
           extra:
-            "「斯帕 24 小时」是 GT World Challenge 的皇冠耐力赛;正是 BoP 的存在,才让一辆前置宝马、一辆中置法拉利、一辆后置保时捷能在同一场里真刀真枪地缠斗。",
+            "「斯帕 24 小时」是 GT World Challenge 乃至全世界规模最大的 GT 耐力赛，也是全年分量最重的一站——它把计分分成 6 小时、12 小时、24 小时三段，每段按 25-18-15 计分，单站最多可拿 75 分。正是 BoP 与车手分级的存在，才让一辆前置宝马、一辆中置法拉利、一辆后置保时捷，以及职业与业余车手，能在同一条赛道上真刀真枪地缠斗——这正是「客户赛车」普及全球的关键。",
           sources: [
             {
-              label: "GT World Challenge 官方",
+              label: "GT World Challenge 官方（gt-world-challenge.com）",
               url: "https://www.gt-world-challenge.com",
             },
-            { label: "SRO Motorsports", url: "https://www.sro-motorsports.com" },
+            { label: "SRO Motorsports 官方", url: "https://www.sro-motorsports.com" },
           ],
         },
       ],
@@ -899,39 +903,43 @@ export const copy: Record<Lang, Content> = {
           name: "Karting",
           full: "Karting",
           concept:
-            "The entry-level foundation of circuit motorsport — small, light, suspension-less single-seaters, mostly two-stroke. Universally seen as the gateway to pro racing: relatively cheap and accessible, it teaches every fundamental — racing lines, starts, overtaking, wheel-to-wheel defending. It's also a serious sport with its own FIA World and European Championships.",
+            "Karting is the entry-level foundation of circuit motorsport — small, light, near-suspension-less single-seaters you sit low to the ground in, mostly two-stroke. It is universally seen as the gateway to pro racing: relatively cheap and accessible, it teaches every fundamental — racing lines, braking points, starts, overtaking and wheel-to-wheel defending — at the purest level. Because it sits so low with no suspension, the sense of speed is amplified and the feedback is brutally honest: do something wrong and the kart tells you instantly. It is also a serious sport in its own right, with FIA World and European Championships, governed by FIA Karting (formerly CIK-FIA) — not just a leisure attraction.",
           rules: [
-            "Governed by FIA Karting (formerly CIK-FIA); broad families are direct-drive karts, gearbox karts and Superkarts.",
-            "The career ladder is age/displacement-tiered: Mini (kids) → OK-Junior (teens, 125cc water-cooled) → OK (senior top class, 125cc).",
-            "KZ is the 125cc gearbox class (KZ1 / KZ2); Superkart is the fastest — twin-cylinder 250cc, near 100 hp, long circuits only.",
-            "Almost every modern top driver started in karts.",
+            "Three families: FIA Karting's championship classes fall into direct-drive karts, gearbox karts and Superkarts, all sharing two-stroke engines.",
+            "Direct-drive: the top class is OK (senior, from age 14, 125cc, push-started and simplified since 2016); the junior class is OK-Junior (ages 12–14, 125cc water-cooled, with clutch, electric start and an rpm limit), with a simplified, lower-cost OKN-Junior also offered.",
+            "Gearbox (KZ): 125cc, reed-valve intake, six-speed sequential gearbox; KZ1 and KZ2 are technically near-identical, split mainly by driver experience, with a recent KZ2-Masters for drivers 35 and over.",
+            "Superkart: the most unusual class — full bodywork, a twin-cylinder 250cc engine near 100 hp, driven almost lying down, suited only to long circuits, with lap times rivalling far more sophisticated single-seaters.",
+            "Events: the FIA runs World and European Championships, plus a CIK-FIA Endurance Championship usually held at Le Mans, France, and continental titles such as the Asia-Pacific Championship.",
           ],
           extra:
-            "Verstappen, Hamilton and Schumacher all came up through karting — and in 2013 Verstappen won three CIK-FIA titles in a single year, a dominant karting-era run.",
+            "Almost every modern top driver started in karts: Verstappen, Hamilton and Schumacher all came up this way, and in 2013 Verstappen won several CIK-FIA titles in a single year — a dominant karting-era run. Because it distils the core of racing into a cheap, safe little machine, karting is both the cradle of champions and the closest, lowest-cost way for an ordinary person to reach 'real' racing — something you can go and try this weekend.",
           sources: [
-            { label: "FIA Karting (official)", url: "https://www.fiakarting.com" },
-            { label: "FIA", url: "https://www.fia.com" },
+            { label: "FIA Karting official (fiakarting.com)", url: "https://www.fiakarting.com" },
+            {
+              label: "FIA Karting categories & rules (official)",
+              url: "https://www.fiakarting.com/page/fia-karting-categories",
+            },
           ],
         },
         {
           name: "GT",
           full: "GT3 / GT Racing",
           concept:
-            "GT (Grand Touring) racing pits production-derived two-seat sports cars against each other — the race versions of road cars from Ferrari, Porsche, BMW, Mercedes-AMG, Audi, Lamborghini and McLaren. GT3 is today's globally standardized, mainstream 'customer racing' class, letting private teams buy and race manufacturer-built cars.",
+            "GT (Grand Touring) racing pits production-derived sports cars against each other — the race versions of road cars from Ferrari, Porsche, BMW, Mercedes-AMG, Audi, Lamborghini and McLaren. GT3 is today's globally standardized, mainstream 'customer racing' class: manufacturers build the cars and sell them, so a private team can buy one and race without developing its own. The GT3 category itself grew from a framework the SRO Motorsports Group proposed to the FIA, which now defines the technical rules; to be homologated, a manufacturer typically must first build enough of the matching road car, and the racer is then tested on dynos, in wind tunnels and on track. The flagship global platform is SRO's GT World Challenge, spanning continental series in Europe, Asia, America and Australia.",
           rules: [
-            "GT3 technical rules are defined by the FIA; the flagship global platform is SRO's GT World Challenge.",
-            "Because front-, mid- and rear-engined cars race together, Balance of Performance (BoP) adjusts weight, power and aero to keep brands evenly matched.",
-            "The season splits into Sprint and Endurance disciplines, each with its own title.",
-            "Drivers are graded Platinum/Gold/Silver/Bronze, and lineup rules let amateur 'gentleman drivers' race alongside pros.",
+            "Balance of Performance (BoP): because front-, mid- and rear-engined cars from different brands race together, SRO uses ECU data, GPS, dyno and wind-tunnel tests to adjust weight, turbo boost/air restrictors, ride height and fuel to keep them evenly matched; BoP is published before each event and does not react to race results.",
+            "Driver grading: SRO grades drivers Platinum/Gold/Silver/Bronze and sorts crews into classes such as Pro, Gold, Silver, Bronze and Pro-Am, letting professionals and amateur 'gentleman drivers' compete together by rule.",
+            "Two formats: the season splits into Sprint and Endurance disciplines of about five rounds each; Sprint weekends are two ~1-hour, two-driver races with a mandatory driver change, while Endurance races run 3–6 hours, shared by three drivers.",
+            "Overall title: points from the Sprint and Endurance cups combine to crown the GT World Challenge overall drivers' and teams' champions.",
           ],
           extra:
-            "The 24 Hours of Spa is GT World Challenge's crown-jewel endurance event — and it's BoP that lets a front-engined BMW, a mid-engined Ferrari and a rear-engined Porsche genuinely fight in the same race.",
+            "The 24 Hours of Spa is GT World Challenge's crown jewel — the biggest GT race in the world and the season's most valuable round: it splits scoring into 6-, 12- and 24-hour stages, each on the 25-18-15 scale, for up to 75 points. It is BoP and driver grading together that let a front-engined BMW, a mid-engined Ferrari and a rear-engined Porsche — and professionals alongside amateurs — genuinely fight in the same race, which is exactly why 'customer racing' has spread worldwide.",
           sources: [
             {
-              label: "GT World Challenge (official)",
+              label: "GT World Challenge official (gt-world-challenge.com)",
               url: "https://www.gt-world-challenge.com",
             },
-            { label: "SRO Motorsports", url: "https://www.sro-motorsports.com" },
+            { label: "SRO Motorsports official", url: "https://www.sro-motorsports.com" },
           ],
         },
       ],
