@@ -13,15 +13,15 @@ export function PageHeader({ section }: { section: SectionKey }) {
   const meta = useCopy().sections[section];
 
   return (
-    <section className="px-6 pt-32 sm:pt-40 text-[var(--page-fg)]">
-      <Reveal className="mx-auto max-w-2xl text-center">
+    <section className="px-6 pt-32 sm:pt-44 text-[var(--page-fg)]">
+      <Reveal className="mx-auto max-w-5xl">
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--page-fg-soft)]">
           {meta.label}
         </p>
-        <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+        <h1 className="mt-5 text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
           {meta.headline}
         </h1>
-        <p className="mt-5 text-lg leading-relaxed text-[var(--page-fg-soft)]">
+        <p className="mt-7 max-w-2xl text-xl leading-relaxed text-[var(--page-fg-soft)] sm:text-2xl">
           {meta.intro}
         </p>
       </Reveal>

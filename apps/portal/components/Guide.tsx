@@ -21,14 +21,14 @@ export function Guide() {
   return (
     <section id="guide" className="py-28 sm:py-36 text-[var(--page-fg)]">
       <div className="mx-auto max-w-6xl px-6">
-        <Reveal className="mx-auto max-w-2xl text-center">
+        <Reveal className="max-w-3xl">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--page-fg-soft)]">
             {t.eyebrow}
           </p>
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+          <h2 className="mt-5 text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
             {t.title}
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-[var(--page-fg-soft)]">
+          <p className="mt-6 text-xl leading-relaxed text-[var(--page-fg-soft)] sm:text-2xl">
             {t.subtitle}
           </p>
         </Reveal>
@@ -45,10 +45,10 @@ export function Guide() {
                 <span className="inline-block self-start rounded-full bg-[var(--page-panel)] px-3 py-1 text-xs font-medium text-[var(--page-fg-soft)] ring-1 ring-[var(--page-hairline)]">
                   {card.tag}
                 </span>
-                <h3 className="mt-5 text-xl font-semibold tracking-tight">
+                <h3 className="mt-5 text-2xl font-semibold tracking-tight">
                   {card.title}
                 </h3>
-                <p className="mt-3 leading-relaxed text-[var(--page-fg-soft)]">
+                <p className="mt-3 text-[1.05rem] leading-relaxed text-[var(--page-fg-soft)]">
                   {card.body}
                 </p>
                 {/* 可点击提示：极淡「展开阅读 →」，不改动悬停动画 */}

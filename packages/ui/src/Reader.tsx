@@ -70,7 +70,7 @@ export function Reader({
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={springSnappy}
-              className="mx-auto max-w-[42rem] px-6 py-16 font-serif sm:py-24"
+              className="mx-auto max-w-[46rem] px-6 py-16 font-serif sm:py-24"
             >
               {children}
             </motion.article>
@@ -95,7 +95,7 @@ export function ArticleEyebrow({ children }: { children: React.ReactNode }) {
 // 文章大标题
 export function ArticleTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h1 className="mt-3 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+    <h1 className="mt-3 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">
       {children}
     </h1>
   );
@@ -104,7 +104,7 @@ export function ArticleTitle({ children }: { children: React.ReactNode }) {
 // 导语：标题下稍大的引入段
 export function ArticleLead({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mt-7 text-xl leading-[1.7] text-[var(--page-fg)]">
+    <p className="mt-8 text-2xl leading-[1.6] text-[var(--page-fg)]">
       {children}
     </p>
   );
@@ -113,7 +113,7 @@ export function ArticleLead({ children }: { children: React.ReactNode }) {
 // 节内小标题（概念 / 规则 / 亮点 / 来源…）
 export function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="mb-3 mt-12 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--page-fg-soft)]">
+    <h2 className="mb-4 mt-14 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--page-fg-soft)]">
       {children}
     </h2>
   );
@@ -122,7 +122,7 @@ export function SectionLabel({ children }: { children: React.ReactNode }) {
 // 正文段落
 export function ArticleP({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mt-5 text-[1.0625rem] leading-[1.85] text-[var(--page-fg-soft)]">
+    <p className="mt-6 text-[1.1875rem] leading-[1.9] text-[var(--page-fg-soft)]">
       {children}
     </p>
   );
