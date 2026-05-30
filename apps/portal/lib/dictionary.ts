@@ -383,19 +383,21 @@ export const copy: Record<Lang, Content> = {
           name: "IndyCar",
           full: "印地赛车 · Indy 500",
           concept:
-            "北美最高级别的单座、开轮式赛车系列。赛车采用接近统一的规格,但赛道类型极其多样,对车手的全能要求很高。皇冠赛事「印地 500」是赛车运动「三冠王」之一,也是全球规模最大的单日体育赛事之一。",
+            "NTT IndyCar 系列赛是北美最高级别的单座、开轮式赛车赛事。它采用「统一规格（spec）」理念：全场使用同一款 Dallara IR-18 底盘，发动机为本田或雪佛兰供应的 2.2 升双涡轮 V6（峰值逾 700 马力），以此压低成本、拉近差距、突出车手实力。与 F1 不同，IndyCar 在三类截然不同的赛道上比赛——超级椭圆/短椭圆、永久性公路赛道、临时街道赛道——对车手的全能性要求极高，因此可调的空气动力学套件会按椭圆、超级速道、公路分别配置。系列赛的皇冠赛事「印地安纳波利斯 500」是赛车运动「三大赛」之一，也是全球规模最大的单日体育赛事之一。",
           rules: [
-            "在三类赛道上比赛:超级椭圆/短椭圆、永久性公路赛道、临时街道赛道。",
-            "底盘由 Dallara 统一供应;近年起引入混合动力系统。",
-            "排位赛因赛道而异:公路/街道用类似 F1 的分段淘汰制,椭圆赛道多为单车计时跑。",
-            "印地 500:2.5 英里椭圆,跑 200 圈共 500 英里,传统上 33 辆车发车。",
+            "赛道类型：一个赛季横跨超级椭圆、短椭圆、永久公路赛道与临时街道赛道四种场地，对车手与车队的适应力是极大考验。",
+            "动力调校：发动机功率由赛会按赛道类型经「增压（boost）」调整——超级速道增压较低（约 575 马力），公路/街道更高（约 675 马力）。",
+            "混合动力：2024 年赛季中引入了基于超级电容、约 60 马力的混动单元，可回收制动能量、辅助再加速，必要时还能重启发动机。",
+            "「推杆超车（push-to-pass）」：仅在公路/街道赛道可用，按住方向盘按钮临时增加功率，每站有「单次时长」与「全场总时长」上限，何时用是策略关键；椭圆赛道不设此功能。",
+            "印地 500：在 2.5 英里椭圆上跑 200 圈、共 500 英里，传统上 33 辆车以每排三辆、共十一排发车。",
+            "印地 500 排位：单独的排位周末，每辆车独自跑四圈（共 10 英里）计平均速度，经逐日淘汰最终决出杆位（Firestone Fast Six 争夺杆位）。",
           ],
           extra:
-            "同一个赛季里,车手既要在椭圆赛道上以接近 380 km/h 的均速贴墙狂奔,又要在街道赛道上不断刹车入弯——这种「全地形」考验在顶级赛车里独此一家。",
+            "IndyCar 最独特之处在于「全地形」：同一个赛季里，车手既要在椭圆赛道上以接近每小时 380 公里的均速贴着墙壁高速奔跑，又要在狭窄街道赛道上不断重刹入弯——这种横跨多种场地的考验，在顶级方程式赛车里独此一家，对车手的适应力与勇气都是极限挑战。印地 500 与摩纳哥大奖赛、勒芒 24 小时并称赛车运动的「三大赛事」，能同时拿下三者的车手屈指可数。现代 IndyCar 还配有名为 Aeroscreen 的环形挡风/防护装置以保护车手头部；而印地 500 的胜者在终点饮下一瓶牛奶，则是延续近百年的经典传统。",
           sources: [
-            { label: "IndyCar.com 官方", url: "https://www.indycar.com" },
+            { label: "IndyCar 官方（indycar.com）", url: "https://www.indycar.com" },
             {
-              label: "印地车速场官方",
+              label: "印地安纳波利斯赛道官方",
               url: "https://www.indianapolismotorspeedway.com",
             },
           ],
@@ -404,33 +406,45 @@ export const copy: Record<Lang, Content> = {
           name: "NASCAR",
           full: "全美改装车赛",
           concept:
-            "美国改装车（stock car）赛的最高级别——外形仿照雪佛兰、福特、丰田量产车型的专用赛车。比赛以椭圆赛道为主（从短赛道到超级速道）,辅以公路与街道赛,以高速「集团贴身缠斗」闻名,是美国收视最高的赛车运动。",
+            "NASCAR 库普系列赛（Cup Series）是美国改装车（stock car）赛的最高级别——外形仿照雪佛兰、福特、丰田量产车型、但底盘为专门打造的封闭式赛车。比赛以椭圆赛道为主（从不到一英里的短赛道到超过两英里的超级速道），近年也加入公路赛与街道赛，以高速「集团贴身缠斗」闻名，是美国收视最高的赛车运动之一。现役赛车为 2022 年引入的「Next Gen」平台：底盘更标准化、外观更贴近展厅车型，并统一了大量通用部件以控制成本、拉近竞争。整个赛季约三十余站，分为常规赛与赛季末的「季后赛（Playoffs / Chase）」两段。揭幕战「戴通纳 500」是其皇冠赛事，被称作「伟大的美国赛车（The Great American Race）」，往往是全年最受瞩目的一场；NASCAR 旗下还设有 Xfinity 与卡车（Truck）两个低一级的全国系列赛，构成晋级阶梯。",
           rules: [
-            "现役为 Next Gen 平台:更标准化的底盘,外观更接近展厅车型。",
-            "多数比赛分成若干「阶段（stage）」,每个阶段结束都计分,阶段冠军另有奖励分。",
-            "赛季分常规赛与季末「季后赛」,以季后赛积分逐轮决出年度总冠军。",
-            "以椭圆赛道为主,近年也加入了公路赛与街道赛。",
+            "阶段赛（stage）：多数比赛分为三个阶段（戴通纳 500、可口可乐 600 为四个），前面的阶段结束时按当时名次给「阶段积分」（取前十：10-9-8-…-1），叠加到该站总成绩上。",
+            "单站积分：以 2026 赛季为例，分站冠军得 55 分，其后名次依次递减；全场最快单圈另加 1 分（但中途进过修车间者不能靠最后低油量冲一圈来抢这一分）。",
+            "进站：比赛中可多次进站换四条轮胎、加油并微调赛车，一次干净的进站约十余秒；何时进站、用谁进站是贯穿全程的重要策略。",
+            "黄旗与加时：赛道出现事故或散落物时出动安全车（黄旗）整理车群、降低车速；若临近收尾才出黄旗，则以「绿—白—格旗」加时，力求比赛在竞速状态中冲线结束。",
+            "常规赛与季后赛：前 26 站为常规赛，最后 10 站为季后赛；2026 起改回按常规赛积分确定季后赛席位与种子，取消了过去「赢一场即晋级」的规则。",
+            "季后赛淘汰制：库普系列赛季后赛 16 人，经「16 强→12 强→8 强」逐轮淘汰，最后一站由剩下的冠军候选人现场决出年度总冠军。",
+            "赛道：以椭圆赛道为主，兼有公路赛与街道赛；超级速道上的高速贴身缠斗是其最具标志性的画面。",
           ],
           extra:
-            "超级速道上,几十辆车以极近车距高速「抱团」行驶,利用尾流互相借力（drafting）——壮观,也最容易引发连环大事故,这正是它的标志性看点。",
-          sources: [{ label: "NASCAR.com 官方", url: "https://www.nascar.com" }],
+            "在戴通纳、塔拉迪加这样的超级速道上，几十辆车会以极近的车距高速「抱团」行驶，利用彼此尾流互相借力（drafting）——场面极其壮观，也最容易引发牵连大半个车群的连环事故（俗称「the Big One」）。正因如此，NASCAR 的看点不只在最快的那辆车，更在整群车贴着彼此、寸土必争的集团博弈。",
+          sources: [
+            { label: "NASCAR 官方（nascar.com）", url: "https://www.nascar.com" },
+          ],
         },
         {
           name: "Formula E",
           full: "电动方程式",
           concept:
-            "国际汽联（FIA）认证的全电动单座赛车世界锦标赛,定位为电动车技术与可持续发展的展示舞台。比赛（称 E-Prix）多在大城市市中心的临时街道赛道举行,而非专用赛车场。",
+            "电动方程式（ABB FIA Formula E World Championship）是国际汽联（FIA）旗下全电动单座赛车的最高级别赛事，定位为电动车技术与城市可持续出行的展示舞台。首场比赛于 2014 年 9 月在北京举行，并自 2020 年起获得 FIA「世界锦标赛」地位。比赛称为 E-Prix，多在大城市市中心临时围出的街道赛道举行，而非专用赛车场，以贴近城市观众。现役赛车为 Gen3 Evo：可四轮驱动，加速极猛——官方称其 0–100 km/h 约 1.82 秒，是目前加速最快的 FIA 单座赛车。比赛禁止中途充电，赛车依靠制动能量回收补充电量，因此「省电」与「冲刺」的取舍贯穿全场。",
           rules: [
-            "采用统一规格的纯电单座赛车;比赛是固定圈数、站立起步。",
-            "核心玩法是「能量管理」:车手不能全程全功率,必须把电量精打细算地分配到终点。",
-            "「攻击模式（Attack Mode）」:车手须驶离常规走线、经过场外的激活区,以换取一段额外功率。",
-            "积分同为前十 25-…-1,另设杆位与最快圈奖励分。",
+            "排位赛：先分两组、各以 300 千瓦在限定时间内刷圈，每组最快四名晋级；随后八人以满功率 350 千瓦进行一对一「对决（Duels）」，经四分之一决赛、半决赛、决赛争夺杆位。",
+            "攻击模式（Attack Mode）：正赛常规功率为 300 千瓦、后驱；车手须驶离最佳走线、经过场外「激活区」，换取一段 350 千瓦、四驱的额外功率——绕远换取更强动力，是超车与防守的博弈。",
+            "进站增能（Pit Boost，第 11 赛季起）：在指定比赛中强制进站一次，于维修区用约 30 秒、600 千瓦快速补入约 10% 电量；每队仅一套设备，无法叠站。",
+            "能量管理：全程不能一直全功率，350 千瓦比 300 千瓦更费电；若「攻击」阶段用力过猛，可能在最后几圈前耗尽可用电量——精打细算地把电量分配到终点是核心。",
+            "积分：前十名为 25、18、15、12、10、8、6、4、2、1；杆位另加 3 分、最快圈另加 1 分。比赛为固定圈数、站立起步，遇安全车/全场黄旗可加圈。",
           ],
           extra:
-            "最新一代赛车（Gen3 Evo）0–100 km/h 加速约 1.8 秒,比现款 F1 还快,是目前加速最猛的单座赛车。",
+            "Formula E 把「赛车」与「能量管理」揉在一起：它不是单纯比谁踩得猛，而是比谁能在有限电量里把速度、攻击模式与回收用到极致。Attack Mode、Pit Boost 这些机制让比赛充满临场取舍与变数，加上市中心街道赛的近距离缠斗，让它在观赏性与「电动化叙事」上都自成一派。捷豹、保时捷、日产、玛莎拉蒂等厂商均有参与，把它当作量产电动车技术的试验场；新一代赛车 Gen4 已于 2025 年发布，功率与四驱能力将进一步提升，标志着这项年轻赛事仍在快速进化。",
           sources: [
-            { label: "FIA Formula E 官方", url: "https://www.fiaformulae.com" },
-            { label: "FIA（国际汽联）", url: "https://www.fia.com" },
+            {
+              label: "FIA Formula E 官方（fiaformulae.com）",
+              url: "https://www.fiaformulae.com",
+            },
+            {
+              label: "Formula E 规则与竞赛规程（官方）",
+              url: "https://www.fiaformulae.com/en/championship/rules-and-regulations",
+            },
           ],
         },
         {
@@ -817,19 +831,21 @@ export const copy: Record<Lang, Content> = {
           name: "IndyCar",
           full: "IndyCar · Indy 500",
           concept:
-            "North America's premier open-wheel, single-seater series. The cars are near-identical spec machines, but the track types are wildly varied, demanding real all-round versatility. Its centerpiece, the Indianapolis 500, is one of motorsport's Triple Crown and among the largest single-day sporting events on Earth.",
+            "The NTT IndyCar Series is North America's premier open-wheel, single-seater championship. It is built on a 'spec' philosophy: every car uses the same Dallara IR-18 chassis, with a 2.2-litre twin-turbo V6 from either Honda or Chevrolet (over 700 hp), to control costs, close the field up and put the focus on driver skill. Unlike F1, IndyCar races across three very different track types — super/short ovals, permanent road courses and temporary street circuits — so its adjustable aero package is configured differently for ovals, superspeedways and road courses, demanding real all-round versatility. Its crown jewel, the Indianapolis 500, is one of motorsport's three greatest races and among the largest single-day sporting events on Earth.",
           rules: [
-            "It races on three track types: super-/short ovals, permanent road courses and temporary street circuits.",
-            "A spec Dallara chassis; a hybrid energy-recovery powertrain was introduced in recent seasons.",
-            "Qualifying varies by track: road/street use an F1-style knockout, ovals typically use single-car timed runs.",
-            "The Indy 500: a 2.5-mile oval, 200 laps for 500 miles, traditionally a 33-car field.",
+            "Track types: a season spans superspeedways, short ovals, permanent road courses and temporary street circuits — a huge test of adaptability for drivers and teams.",
+            "Power tuning: engine output is set by the series per track type via turbo 'boost' — lower on superspeedways (~575 hp), higher on road/street courses (~675 hp).",
+            "Hybrid: a supercapacitor-based hybrid of about 60 hp was introduced mid-2024, recovering braking energy to aid acceleration and even restart the engine.",
+            "Push-to-pass: available only on road/street courses, a steering-wheel button gives a temporary power boost with a per-push and a per-race time limit, making its timing a strategic weapon; ovals have no push-to-pass.",
+            "The Indy 500: 200 laps of the 2.5-mile oval for 500 miles, traditionally a 33-car field lined up three-wide across eleven rows.",
+            "Indy 500 qualifying: a separate weekend where each car runs four laps (10 miles) alone for an average speed, with day-by-day knockouts deciding pole (the Firestone Fast Six).",
           ],
           extra:
-            "In one season a driver must run inches from the wall at oval speeds near 380 km/h, then brake-and-turn through a tight street circuit — an all-terrain test unique among top-flight racing.",
+            "IndyCar's signature is its all-terrain demand: in a single season a driver runs inches from the wall at oval speeds near 380 km/h, then brakes hard into the corners of a tight street circuit. No other top-flight single-seater spans such different track types, testing a driver's adaptability and nerve to the limit. The Indy 500 stands alongside the Monaco Grand Prix and the 24 Hours of Le Mans as one of motorsport's three greatest races, a treble only a handful of drivers have ever completed. Modern IndyCars carry the Aeroscreen, a wraparound head-protection device, and the winner of the Indy 500 drinks a bottle of milk in victory lane — a tradition nearly a century old.",
           sources: [
-            { label: "IndyCar.com (official)", url: "https://www.indycar.com" },
+            { label: "IndyCar official (indycar.com)", url: "https://www.indycar.com" },
             {
-              label: "Indianapolis Motor Speedway",
+              label: "Indianapolis Motor Speedway (official)",
               url: "https://www.indianapolismotorspeedway.com",
             },
           ],
@@ -838,33 +854,45 @@ export const copy: Record<Lang, Content> = {
           name: "NASCAR",
           full: "NASCAR Cup Series",
           concept:
-            "The top division of American stock-car racing — purpose-built cars styled after production Chevrolets, Fords and Toyotas. Racing is mostly on ovals (from short tracks to superspeedways), plus some road and street courses, and is famous for high-speed pack racing. It's the most-watched motorsport in the U.S.",
+            "The NASCAR Cup Series is the top division of American stock-car racing — closed cars styled after production Chevrolets, Fords and Toyotas but built on a purpose-made chassis. Racing is mostly on ovals (from sub-one-mile short tracks to superspeedways over two miles long), with road and street courses added in recent years, and is famous for high-speed pack racing — the most-watched motorsport in the U.S. The current car is the 'Next Gen' platform introduced in 2022, more standardized and showroom-like, with many common parts to control costs and tighten competition. A season of around three dozen races splits into a regular season and a season-ending playoff (the 'Chase'). The season-opening Daytona 500 is the crown jewel — 'The Great American Race' — usually the year's biggest event; NASCAR also runs the Xfinity and Truck national series one rung below as a ladder.",
           rules: [
-            "The current car is the standardized 'Next Gen' platform, styled to look more like showroom models.",
-            "Most races split into 'stages'; each stage end scores points, with a bonus for the stage winner.",
-            "The season runs a regular phase then a season-ending playoff that decides the champion on playoff points.",
-            "Predominantly oval racing, with road and street courses added in recent years.",
+            "Stages: most races are split into three stages (the Daytona 500 and Coca-Cola 600 have four); the earlier stages award stage points to the top ten (10-9-8-…-1) on top of the finishing result.",
+            "Race points: in the 2026 season a race win is worth 55 points, scaling down by position, with one extra point for the fastest lap (a car that has been to the garage cannot grab it on a late low-fuel run).",
+            "Pit stops: cars pit repeatedly during a race to change four tyres, refuel and adjust the car; a clean stop takes around twelve seconds, and when and with whom to pit is a running strategic battle.",
+            "Cautions and overtime: a safety car (yellow flag) bunches the field and slows it after an incident or debris; if a caution falls near the end, a 'green-white-checkered' overtime aims to finish the race under racing conditions.",
+            "Regular season and playoffs: the first 26 races are the regular season and the final 10 the playoffs; from 2026 the playoff field and seeding are set by regular-season points, ending the old 'win-and-you're-in' rule.",
+            "Elimination playoffs: the Cup playoff field is 16, cut through rounds of 16 → 12 → 8, with the title decided on the final race among the remaining contenders.",
+            "Tracks: predominantly ovals, plus road and street courses; the high-speed pack on superspeedways is its signature image.",
           ],
           extra:
-            "On superspeedways dozens of cars run nose-to-tail in a high-speed pack, drafting off each other — spectacular, and the most likely trigger for a 'Big One' multi-car crash. That's the signature appeal.",
-          sources: [{ label: "NASCAR.com (official)", url: "https://www.nascar.com" }],
+            "On superspeedways like Daytona and Talladega, dozens of cars run nose-to-tail in a high-speed pack, drafting off one another — spectacular, and the most likely trigger for a multi-car 'Big One' that can collect half the field. That is why NASCAR's appeal isn't just the fastest car, but the pack-racing chess of cars running inches apart, fighting for every position.",
+          sources: [
+            { label: "NASCAR official (nascar.com)", url: "https://www.nascar.com" },
+          ],
         },
         {
           name: "Formula E",
           full: "Formula E",
           concept:
-            "The FIA-sanctioned all-electric single-seater World Championship, conceived as a showcase for EV technology and sustainability. Its races — called E-Prix — are held mostly on temporary street circuits in major city centres rather than dedicated racetracks.",
+            "The ABB FIA Formula E World Championship is the FIA's top class of all-electric single-seater racing, conceived as a showcase for EV technology and sustainable city mobility. The first race was held in Beijing in September 2014, and the series gained FIA World Championship status in 2020. Its races — called E-Prix — are held mostly on temporary street circuits in the heart of major cities rather than dedicated tracks, to reach urban audiences. The current car is the Gen3 Evo: all-wheel-drive capable and ferociously quick — officially 0–100 km/h in about 1.82 seconds, the fastest-accelerating FIA single-seater. Charging is banned mid-event, so cars top up via regenerative braking, making the trade-off between saving energy and attacking central to every race.",
           rules: [
-            "Spec all-electric single-seaters; races are a fixed number of laps from a standing start.",
-            "The core skill is energy management — you can't run flat-out, you must ration the battery to the finish.",
-            "'Attack Mode': drivers must leave the racing line through an off-line activation zone to collect a burst of extra power.",
-            "Points follow the same 25-…-1 top-ten scale, with bonus points for pole and fastest lap.",
+            "Qualifying: drivers first split into two groups, lapping at 300 kW against the clock; the fastest four from each group advance to one-on-one 'Duels' at the full 350 kW through quarter-finals, semis and a final for pole.",
+            "Attack Mode: the race runs at 300 kW and rear-wheel drive; to unlock a burst of 350 kW and all-wheel drive, a driver must leave the racing line and pass through an off-line activation zone — trading a slower line for more power.",
+            "Pit Boost (since Season 11): in designated races a mandatory pit stop adds about 10% energy via a ~30-second, 600 kW top-up; each team has only one rig, so cars cannot double-stack.",
+            "Energy management: you can't run flat-out, as 350 kW drains the battery far faster than 300 kW; push too hard in an attack phase and you may run short before the final laps — rationing energy to the finish is the core skill.",
+            "Points: the top ten score 25, 18, 15, 12, 10, 8, 6, 4, 2, 1, with three bonus points for pole and one for fastest lap. Races are a fixed number of laps from a standing start, with laps added for safety-car/full-course-yellow periods.",
           ],
           extra:
-            "The latest car (Gen3 Evo) does 0–100 km/h in about 1.8 seconds — quicker than a current F1 car, making it the fastest-accelerating single-seater there is.",
+            "Formula E fuses racing with energy management: it isn't simply about who pushes hardest, but who best deploys limited energy across speed, Attack Mode and regeneration. Mechanics like Attack Mode and Pit Boost fill races with split-second trade-offs and swings, and combined with close-quarters city-street racing, give the series both its spectacle and its distinctive electric-era story. Manufacturers such as Jaguar, Porsche, Nissan and Maserati take part, treating it as a proving ground for road-EV technology; the next-generation Gen4 car, unveiled in 2025, raises power and all-wheel-drive capability further — a sign this young series is still evolving fast.",
           sources: [
-            { label: "FIA Formula E (official)", url: "https://www.fiaformulae.com" },
-            { label: "FIA", url: "https://www.fia.com" },
+            {
+              label: "FIA Formula E official (fiaformulae.com)",
+              url: "https://www.fiaformulae.com",
+            },
+            {
+              label: "Formula E rules & regulations (official)",
+              url: "https://www.fiaformulae.com/en/championship/rules-and-regulations",
+            },
           ],
         },
         {
