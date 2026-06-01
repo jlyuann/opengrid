@@ -24,14 +24,14 @@ export function RacingTypes() {
   return (
     <section className="py-24 sm:py-32 text-[var(--page-fg)]">
       <div className="mx-auto max-w-6xl px-6">
-        <Reveal className="mx-auto max-w-2xl text-center">
+        <Reveal className="max-w-3xl">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--page-fg-soft)]">
             {t.eyebrow}
           </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+          <h2 className="mt-5 text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
             {t.title}
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-[var(--page-fg-soft)]">
+          <p className="mt-6 text-xl leading-relaxed text-[var(--page-fg-soft)] sm:text-2xl">
             {t.subtitle}
           </p>
         </Reveal>
