@@ -14,7 +14,7 @@ export function PageHeader({ section }: { section: SectionKey }) {
 
   return (
     <section className="px-6 pt-32 sm:pt-44 text-[var(--page-fg)]">
-      <Reveal className="mx-auto max-w-5xl">
+      <Reveal className="mx-auto max-w-6xl">
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--page-fg-soft)]">
           {meta.label}
         </p>

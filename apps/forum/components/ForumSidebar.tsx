@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLanguage, buttonMotion, springSnappy } from "@opengrid/ui";
 import { useCopy } from "@/lib/useCopy";
+import { PORTAL_URL } from "@/lib/links";
 
 export function ForumSidebar({ onNavigate }: { onNavigate?: () => void }) {
   const t = useCopy();
@@ -24,14 +25,23 @@ export function ForumSidebar({ onNavigate }: { onNavigate?: () => void }) {
 
   return (
     <aside className="flex h-full w-64 flex-col border-r border-[var(--page-hairline)] bg-[color-mix(in_srgb,var(--page-bg)_92%,var(--page-fg))] text-[var(--page-fg)]">
-      {/* 品牌 */}
-      <Link
-        href="/"
-        onClick={onNavigate}
-        className="flex h-16 shrink-0 items-center border-b border-[var(--page-hairline)] px-5 text-lg font-semibold tracking-tight"
-      >
-        {t.brand}
-      </Link>
+      {/* 顶部：返回主站（外链跳门户，类比 chatgpt.com 回 openai.com）+ 品牌 */}
+      <div className="shrink-0 border-b border-[var(--page-hairline)]">
+        <a
+          href={PORTAL_URL}
+          className="flex items-center gap-1 px-5 pt-3 text-xs font-medium text-[var(--page-fg-soft)] transition-colors hover:text-[var(--page-fg)]"
+        >
+          <span aria-hidden>←</span>
+          {t.nav.backToPortal}
+        </a>
+        <Link
+          href="/"
+          onClick={onNavigate}
+          className="flex h-12 items-center px-5 text-lg font-semibold tracking-tight"
+        >
+          {t.brand}
+        </Link>
+      </div>
 
       {/* 分类 + 频道 */}
       <nav className="flex-1 overflow-y-auto px-3 py-4">

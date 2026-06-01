@@ -67,7 +67,6 @@ export type Content = {
     pillars: Pillar[];
   };
   home: {
-    exploreEyebrow: string;
     exploreTitle: string;
     exploreSubtitle: string;
     enter: string;
@@ -108,7 +107,7 @@ export type Content = {
     posts: Post[];
   };
   about: {
-    body: string;
+    body: string[];
     note: string;
   };
   join: {
@@ -156,7 +155,7 @@ export const copy: Record<Lang, Content> = {
       about: {
         label: "关于",
         headline: "关于 OpenGrid",
-        intro: "一个关于热爱如何开始的故事。",
+        intro: "聊聊我自己，和这个网站是怎么来的。",
       },
     },
     hero: {
@@ -189,15 +188,14 @@ export const copy: Record<Lang, Content> = {
       ],
     },
     home: {
-      exploreEyebrow: "三大板块",
       exploreTitle: "从这里进入",
-      exploreSubtitle: "知识、社区，还有我们的故事——挑一个开始。",
+      exploreSubtitle: "知识、社区，还有我自己的故事——挑一个开始吧。",
       enter: "进入",
     },
     guide: {
       eyebrow: "F1 入门",
-      title: "从这里，看懂赛车",
-      subtitle: "没接触过也没关系。几分钟，带你迈过认识这项运动的第一道坎。",
+      title: "你一定想知道",
+      subtitle: "没看过也没关系，花几分钟，先迈过最开始的那道坎。",
       readMore: "展开阅读",
       close: "关闭",
       sourceLabel: "资料来源",
@@ -319,7 +317,7 @@ export const copy: Record<Lang, Content> = {
     },
     racing: {
       eyebrow: "赛车门类",
-      title: "赛车的大千世界",
+      title: "赛车，远不止 F1",
       subtitle: "从 F1 到拉力、耐力、电动……点开任意一个，看懂它的概念、规则与魅力。",
       detail: {
         conceptLabel: "概念",
@@ -611,8 +609,18 @@ export const copy: Record<Lang, Content> = {
       ],
     },
     about: {
-      body: "这里将讲述 OpenGrid 的由来——它为什么出现，想为这项运动和这片街区做些什么。完整故事即将补充。",
-      note: "内容即将补充",
+      body: [
+        "2021 年的阿布扎比，维斯塔潘和汉密尔顿把一整个赛季的胜负，压进了最后一圈。那年我还小，挤在电视机前，整个人都看傻了。绷到让人喘不过气的策略，引擎那种几乎要把空气撕开的轰鸣，还有赛车划过弯角时利落得像一支箭的线条。我说不上来心里到底是什么感觉，只知道从那一晚起，我的眼睛就再也离不开赛车了。",
+        "那点着迷，很快就成了戒不掉的习惯。卡塔尔世界杯开幕的前一晚，我熬夜看完了那年最后一站阿布扎比；天亮后眯了没多久，又爬起来守世界杯的开幕式。整整两天，基本没怎么合眼。没人逼我，我也不觉得累，反倒觉得这两天过得特别值。后来我才明白，这大概就是青春最真实的样子：为了真正喜欢的东西，可以一连熬上两天，就因为舍不得错过。",
+        "在所有让我熬夜的理由里，维斯塔潘是最特别的一个。吸引我的从来不只是他快，而是他对赛车那股近乎偏执的劲儿——在他眼里，除了赢，好像什么都不重要。看他比赛看久了，我慢慢也把这股劲儿，变成了自己对待热爱的态度：一旦认准，就别给自己留退路，能押上的都押上去。",
+        "也正是这份热爱，把我从看台推上了赛道。从 F1 到卡丁车，我开得越来越多，也越来越快。那种贴着地面飞出去、风灌进头盔里嗡嗡作响的感觉，这辈子都忘不掉。可热闹是赛场的，孤独是我的。每次下场，赛道上都只有我一个人，一圈一圈地刷圈速，没有对手，也没人陪我为那零点几秒较劲。开到后来我才发现，我想要的根本不只是更快——我想比赛。哪怕就一次，我也想像真正的车手那样，站上发车格，跟人正面拼一回。",
+        "带着这股不甘心，我开始往四周看，这才发现有这种念头的远不止我一个。有人跟我一样，喜欢赛车喜欢得发烫，却不知道第一步该迈去哪；有人咬牙买齐了装备，却凑不到一起下场的人；还有人只是夜里守在屏幕前，觉得这项运动离自己隔着一整个世界。说到底，挡在我们面前的就那么几样东西：高得吓人的门槛、散得到处都是又分不清真假的信息，还有那种「好像只有我一个人这么上头」的孤单。",
+        "OpenGrid 就是我想为这些人做的事——也是为当年那个一个人刷圈的自己。我想把这项老被人说成「又远又贵」的运动，拆成普通人也能看懂、也敢上手的样子；让每个刚动心的人，都能在这儿找到方向、找到装备，更重要的是，找到一起玩的人。",
+        "而我最想做成的，是和大家一起，办起真正属于我们自己的「民间比赛」。它不用是职业赛场那种遥不可及的舞台。可以就是一个普通的周末：一群本来谁也不认识、却一样上头的人，约在同一片场地，戴上头盔，排好发车顺序。然后灯一灭，真正的较量才开始——在大弯道里贴着彼此缠斗，你守住内线，我从外线绕出去，前一刻还领着，下一刻位置就被抢了回去，此消彼长，谁都不肯松一脚油门。有计时，有圈速，有名次，也有冲线那一下真实的心跳。说到底，重要的从来不是奖杯多大，而是你终于不再是一个人——身边坐满了和你一样、肯为热爱拼命的人。",
+        "偶尔也有人问我，赛车还能走多远。环保的要求确实在一点点改写它：发动机要混动，赛道要电动，连轰鸣都在变小。可在我看来，赛车从来就不只是一项运动，它更像一种精神——是想把每一个弯都逼到极限的那股冲动。只要这股劲儿还在，无论车子烧的是油还是电，赛车都不会真的老去。它只是换一副样子，继续往前冲。",
+        "所以，如果你也曾在某个深夜，为一场比赛激动到睡不着；如果你也相信，真心热爱的东西就值得被当回事——那这里，就是为你留的。我把灯一直亮着，等你进来，我们一起把它办成真的。",
+      ],
+      note: "—— 源",
     },
     join: {
       eyebrow: "加入我们",
@@ -658,7 +666,7 @@ export const copy: Record<Lang, Content> = {
       about: {
         label: "About",
         headline: "About OpenGrid",
-        intro: "A short story about how the passion began.",
+        intro: "A bit about me, and how this whole thing started.",
       },
     },
     hero: {
@@ -692,16 +700,15 @@ export const copy: Record<Lang, Content> = {
       ],
     },
     home: {
-      exploreEyebrow: "Three areas",
       exploreTitle: "Where to start",
-      exploreSubtitle: "Knowledge, community — and our story. Pick one to begin.",
+      exploreSubtitle: "Knowledge, community — and my own story. Pick one to begin.",
       enter: "Enter",
     },
     guide: {
       eyebrow: "F1 basics",
-      title: "Start here. Get the sport.",
+      title: "You'll want to know this",
       subtitle:
-        "Never followed it? No problem. A few minutes to clear the very first hurdle.",
+        "Never watched it? No problem. A few minutes to clear that very first hurdle.",
       readMore: "Read more",
       close: "Close",
       sourceLabel: "Sources",
@@ -823,7 +830,7 @@ export const copy: Record<Lang, Content> = {
     },
     racing: {
       eyebrow: "Racing categories",
-      title: "The wide world of racing",
+      title: "Far more than F1",
       subtitle:
         "From F1 to rally, endurance and electric — tap any one to get its concept, rules and what makes it great.",
       detail: {
@@ -1110,8 +1117,18 @@ export const copy: Record<Lang, Content> = {
       ],
     },
     about: {
-      body: "This is where OpenGrid's story will live — why it started, and what it hopes to do for the sport and the neighborhood. The full story is coming soon.",
-      note: "Story coming soon",
+      body: [
+        "Abu Dhabi, 2021. Verstappen and Hamilton, a whole season boiled down to one final lap. I was a kid, glued to the TV, completely stunned. Strategy strung so tight it was hard to breathe, an engine note that seemed to rip the air apart, and a car that cut through the corner clean as an arrow. I couldn't have told you what I was feeling. I just knew that from that night on, I couldn't take my eyes off racing.",
+        "That little spark quickly became a habit I couldn't shake. The night before the Qatar World Cup kicked off, I stayed up to the end of that year's Abu Dhabi finale; I dozed for a bit after sunrise, then dragged myself back up for the World Cup's opening. Two days, barely any sleep. Nobody made me do it, and I wasn't even tired — those two days just felt completely worth it. Only later did I get it: that's what being young really looks like — staying up two days straight for something you love, just because you can't stand to miss it.",
+        "Of all the things that cost me sleep, Verstappen mattered most. It was never just his speed that pulled me in — it was that almost obsessive edge to him, like nothing but winning was worth his time. The more of his races I watched, the more that drive became my own way of caring about things: once you're sure, don't leave yourself a way out, and put up everything you can.",
+        "And it was that love that pushed me off the grandstand and onto the track. From F1 to karting, I drove more and more, and faster and faster. That feeling of flying just off the ground, the wind roaring inside the helmet — I'll never forget it. But the buzz belonged to the track; the loneliness was mine. Every time out, it was just me, circling alone, chasing my own lap times with no one to race and no one to sweat those few tenths with. Eventually I realized that what I wanted wasn't only to go faster — I wanted to race. Even once, I wanted to line up on a grid and go at it with someone, the way a real driver does.",
+        "Carrying that frustration, I started looking around, and that's when I saw I was nowhere near alone. Some people love racing as much as I do but have no clue where to start. Some scrape together the money for gear and then can't find anyone to hit the track with. Some just sit behind a screen at night, sure the whole thing is a world away from them. When you get down to it, the same handful of things block all of us: a barrier that's frighteningly high, information that's scattered everywhere and impossible to trust, and that lonely sense that you're 'the only one who's this into it.'",
+        "OpenGrid is what I want to build for those people — and for the kid I used to be, lapping alone. I want to take this sport everyone calls distant and expensive and break it down into something an ordinary person can actually follow, and actually try. I want anyone who's just caught the bug to find direction here, to find gear here, and most of all, to find people to do it with.",
+        "What I want most of all is for us to build our own grassroots races, together. It doesn't have to be some untouchable professional stage. It can be an ordinary weekend: a bunch of people who didn't know each other but are all just as hooked, meeting at the same track, pulling on helmets, lining up to start. And the moment the lights go out, the real fight begins — running wheel-to-wheel through the long corner, you holding the inside, me sweeping around the outside, leading one second and losing the place the next, neither of us willing to lift off the throttle. Real timing, real lap times, real positions, and that real thump in your chest as you cross the line. In the end it was never about how big the trophy is. It's that you're finally not alone — surrounded by people who'll lay it all on the line for the same thing you love.",
+        "People sometimes ask me how much further racing can go. The push for sustainability really is rewriting it bit by bit: engines going hybrid, tracks going electric, even the roar getting quieter. But the way I see it, racing was never just a sport — it's more like a spirit, the urge to take every single corner to its absolute limit. As long as that drive is alive, it won't matter whether the car burns fuel or runs on a battery; racing won't truly grow old. It'll just take a new shape and keep charging forward.",
+        "So if you've ever lain awake some night, too worked up over a race to sleep; if you believe, like I do, that something you truly love deserves to be taken seriously — then this place is here for you. I've kept the light on. Come in, and let's make it real, together.",
+      ],
+      note: "— Yuan",
     },
     join: {
       eyebrow: "Join us",

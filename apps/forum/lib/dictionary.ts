@@ -13,7 +13,7 @@ type Category = { id: string; name: string; boards: string[] };
 export type ForumContent = {
   brand: string;
   tagline: string;
-  nav: { home: string; login: string };
+  nav: { home: string; login: string; backToPortal: string };
   langToggle: string; // 切换到「另一种语言」时按钮显示的字
   home: {
     eyebrow: string;
@@ -55,7 +55,7 @@ export const copy: Record<Lang, ForumContent> = {
   zh: {
     brand: "OpenGrid 社区",
     tagline: "卡丁车爱好者的聚集地——从第一次下场，到赛道上的老朋友。",
-    nav: { home: "首页", login: "登录" },
+    nav: { home: "首页", login: "登录", backToPortal: "返回主站" },
     langToggle: "EN",
     home: {
       eyebrow: "卡丁车社区",
@@ -123,7 +123,7 @@ export const copy: Record<Lang, ForumContent> = {
     brand: "OpenGrid Community",
     tagline:
       "Where karting fans gather — from your very first session to old friends on track.",
-    nav: { home: "Home", login: "Log in" },
+    nav: { home: "Home", login: "Log in", backToPortal: "Main site" },
     langToggle: "中",
     home: {
       eyebrow: "Karting community",

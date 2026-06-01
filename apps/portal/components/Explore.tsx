@@ -23,10 +23,7 @@ export function Explore() {
     <section className="py-28 sm:py-36 text-[var(--page-fg)]">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--page-fg-soft)]">
-            {t.exploreEyebrow}
-          </p>
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+          <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             {t.exploreTitle}
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-[var(--page-fg-soft)]">
