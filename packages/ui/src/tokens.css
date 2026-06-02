@@ -60,11 +60,12 @@ html {
   scroll-behavior: smooth;
   /* 顶部固定导航栏的高度，锚点跳转时留出空间 */
   scroll-padding-top: 5rem;
-  /* 切换车队时，背景 / 文字 / 辉光色逐帧细腻过渡 */
+  /* 切换车队时，背景 / 文字 / 辉光色逐帧细腻过渡。
+     0.45s + easeOutExpo 缓动：起步快、收尾柔，比 0.8s 更跟手不拖沓。 */
   transition:
-    --page-bg 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-    --page-fg 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-    --page-glow 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    --page-bg 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    --page-fg 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    --page-glow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 body {

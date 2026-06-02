@@ -18,13 +18,13 @@ export const DEFAULT_THEME_ID = "opengrid";
 
 export const THEMES: Theme[] = [
   { id: "opengrid", label: "OpenGrid", accent: "#ffffff" },
-  { id: "mclaren", label: "McLaren", accent: "#ff8000" },
+  { id: "mclaren", label: "McLaren", accent: "#ff8000", bg: "#0a0a0c", fg: "#ff8000" },
   { id: "ferrari", label: "Ferrari", accent: "#e8002d", mode: "glow" },
   { id: "mercedes", label: "Mercedes", accent: "#00d2be" },
   { id: "redbull", label: "Red Bull", accent: "#2747b0" },
   { id: "williams", label: "Williams", accent: "#00a3e0" },
   { id: "astonmartin", label: "Aston Martin", accent: "#229971" },
-  { id: "alpine", label: "Alpine", accent: "#ff87bc" },
+  { id: "alpine", label: "Alpine", accent: "#ff87bc", bg: "#24242a", fg: "#ff87bc" },
   { id: "racingbulls", label: "Racing Bulls", accent: "#6692ff" },
   { id: "haas", label: "Haas", accent: "#e03a3e", bg: "#0a0a0c", fg: "#c4202c" },
   { id: "audi", label: "Audi", accent: "#0c0c0e" },

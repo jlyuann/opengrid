@@ -9,11 +9,13 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLanguage, buttonMotion, springSnappy } from "@opengrid/ui";
 import { useCopy } from "@/lib/useCopy";
+import { useAuth } from "@/components/AuthProvider";
 import { PORTAL_URL } from "@/lib/links";
 
 export function ForumSidebar({ onNavigate }: { onNavigate?: () => void }) {
   const t = useCopy();
   const { toggle } = useLanguage();
+  const { user, loading, signOut } = useAuth();
   const pathname = usePathname();
   // 记录被「收起」的分类（默认全部展开）
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
@@ -24,7 +26,7 @@ export function ForumSidebar({ onNavigate }: { onNavigate?: () => void }) {
     t.boards.find((b) => b.slug === slug)?.name ?? slug;
 
   return (
-    <aside className="flex h-full w-64 flex-col border-r border-[var(--page-hairline)] bg-[color-mix(in_srgb,var(--page-bg)_92%,var(--page-fg))] text-[var(--page-fg)]">
+    <aside className="flex h-full w-64 flex-col border-r border-[var(--page-hairline)] bg-[color-mix(in_srgb,var(--page-bg)_85%,#808080)] text-[var(--page-fg)]">
       {/* 顶部：返回主站（外链跳门户，类比 chatgpt.com 回 openai.com）+ 品牌 */}
       <div className="shrink-0 border-b border-[var(--page-hairline)]">
         <a
@@ -110,23 +112,45 @@ export function ForumSidebar({ onNavigate }: { onNavigate?: () => void }) {
         })}
       </nav>
 
-      {/* 底部用户区：语言切换 + 登录（占位） */}
-      <div className="flex shrink-0 items-center justify-between gap-2 border-t border-[var(--page-hairline)] px-4 py-3">
-        <motion.button
-          onClick={toggle}
-          aria-label="Switch language"
-          {...buttonMotion}
-          className="rounded-full border border-[var(--page-hairline)] px-2.5 py-1 text-xs font-medium text-[var(--page-fg-soft)] transition-colors hover:text-[var(--page-fg)]"
-        >
-          {t.langToggle}
-        </motion.button>
-        <motion.button
-          {...buttonMotion}
-          title={t.thread.loginNote}
-          className="rounded-full bg-[var(--page-fg)] px-4 py-1.5 text-sm font-medium text-[var(--page-bg)]"
-        >
-          {t.nav.login}
-        </motion.button>
+      {/* 底部用户区：语言切换 + 登录状态（登录入口 / 已登录用户 + 退出） */}
+      <div className="shrink-0 border-t border-[var(--page-hairline)] px-4 py-3">
+        {user && (
+          <p
+            className="mb-2 truncate text-xs text-[var(--page-fg-soft)]"
+            title={user.email}
+          >
+            {user.email}
+          </p>
+        )}
+        <div className="flex items-center justify-between gap-2">
+          <motion.button
+            onClick={toggle}
+            aria-label="Switch language"
+            {...buttonMotion}
+            className="rounded-full border border-[var(--page-hairline)] px-2.5 py-1 text-xs font-medium text-[var(--page-fg-soft)] transition-colors hover:text-[var(--page-fg)]"
+          >
+            {t.langToggle}
+          </motion.button>
+
+          {/* 加载会话时先不渲染按钮，避免「登录↔退出」闪烁 */}
+          {loading ? null : user ? (
+            <motion.button
+              onClick={signOut}
+              {...buttonMotion}
+              className="rounded-full border border-[var(--page-hairline)] px-4 py-1.5 text-sm font-medium text-[var(--page-fg-soft)] transition-colors hover:text-[var(--page-fg)]"
+            >
+              {t.auth.logout}
+            </motion.button>
+          ) : (
+            <Link
+              href="/login"
+              onClick={onNavigate}
+              className="rounded-full border border-[var(--page-hairline)] px-4 py-1.5 text-sm font-medium text-[var(--page-fg-soft)] transition-colors hover:text-[var(--page-fg)]"
+            >
+              {t.nav.login}
+            </Link>
+          )}
+        </div>
       </div>
     </aside>
   );

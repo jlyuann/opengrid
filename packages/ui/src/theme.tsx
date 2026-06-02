@@ -59,7 +59,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   // 主题变化时：持久化 + 应用到 <html> 内联变量（内联样式优先级高于 :root）。
-  // @property 注册过的 --page-bg / --page-fg 在此被改写时会触发 0.8s 过渡动画。
+  // @property 注册过的 --page-bg / --page-fg 在此被改写时会触发过渡动画（时长见 tokens.css）。
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, themeId);
     const theme = getTheme(themeId);

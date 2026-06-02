@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider, ThemeProvider } from "@opengrid/ui";
+import { AuthProvider } from "@/components/AuthProvider";
 import { ForumShell } from "@/components/ForumShell";
 import { SiteThemePicker } from "@/components/SiteThemePicker";
 
@@ -39,8 +40,10 @@ export default function RootLayout({
         <div className="page-bg" aria-hidden />
         <LanguageProvider>
           <ThemeProvider>
-            <ForumShell>{children}</ForumShell>
-            <SiteThemePicker />
+            <AuthProvider>
+              <ForumShell>{children}</ForumShell>
+              <SiteThemePicker />
+            </AuthProvider>
           </ThemeProvider>
         </LanguageProvider>
       </body>

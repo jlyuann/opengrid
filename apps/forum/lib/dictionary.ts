@@ -39,6 +39,27 @@ export type ForumContent = {
     loginNote: string;
     backToBoard: string;
   };
+  // 登录 / 注册页与用户区文案
+  auth: {
+    loginTitle: string;
+    loginSubtitle: string;
+    registerTitle: string;
+    registerSubtitle: string;
+    emailLabel: string;
+    passwordLabel: string;
+    passwordHint: string; // 密码要求提示
+    submitLogin: string;
+    submitRegister: string;
+    pendingLogin: string; // 登录中…
+    pendingRegister: string; // 注册中…
+    noAccount: string; // 还没有账号？
+    haveAccount: string; // 已有账号？
+    toRegister: string; // 去注册
+    toLogin: string; // 去登录
+    logout: string;
+    checkEmail: string; // 注册后提示确认邮件
+    backToForum: string;
+  };
   meta: { by: string; replies: string };
   footer: { madeWith: string; rights: string };
   // 取色器文案（传给共享 ThemePicker）
@@ -105,6 +126,26 @@ export const copy: Record<Lang, ForumContent> = {
       replyButton: "回复",
       loginNote: "登录后即可参与讨论（功能开发中）",
       backToBoard: "返回板块",
+    },
+    auth: {
+      loginTitle: "登录",
+      loginSubtitle: "欢迎回来，继续和大家聊卡丁车。",
+      registerTitle: "注册",
+      registerSubtitle: "加入 OpenGrid 社区，一起下场。",
+      emailLabel: "邮箱",
+      passwordLabel: "密码",
+      passwordHint: "至少 6 位",
+      submitLogin: "登录",
+      submitRegister: "注册",
+      pendingLogin: "登录中……",
+      pendingRegister: "注册中……",
+      noAccount: "还没有账号？",
+      haveAccount: "已有账号？",
+      toRegister: "去注册",
+      toLogin: "去登录",
+      logout: "退出",
+      checkEmail: "注册成功！如果开启了邮箱验证，请查收确认邮件；否则可直接登录。",
+      backToForum: "返回论坛",
     },
     meta: { by: "由", replies: "回复" },
     footer: {
@@ -173,6 +214,27 @@ export const copy: Record<Lang, ForumContent> = {
       replyButton: "Reply",
       loginNote: "Log in to join the discussion (coming soon)",
       backToBoard: "Back to board",
+    },
+    auth: {
+      loginTitle: "Log in",
+      loginSubtitle: "Welcome back — let's talk karting.",
+      registerTitle: "Sign up",
+      registerSubtitle: "Join the OpenGrid community and hit the track.",
+      emailLabel: "Email",
+      passwordLabel: "Password",
+      passwordHint: "At least 6 characters",
+      submitLogin: "Log in",
+      submitRegister: "Sign up",
+      pendingLogin: "Logging in…",
+      pendingRegister: "Signing up…",
+      noAccount: "No account yet?",
+      haveAccount: "Already have an account?",
+      toRegister: "Sign up",
+      toLogin: "Log in",
+      logout: "Log out",
+      checkEmail:
+        "Account created! If email confirmation is on, check your inbox; otherwise just log in.",
+      backToForum: "Back to forum",
     },
     meta: { by: "by", replies: "replies" },
     footer: {
