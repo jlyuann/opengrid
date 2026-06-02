@@ -20,7 +20,8 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: "OpenGrid 社区 · 卡丁车交流论坛 | Karting Community Forum",
+  // 标签页：品牌名 + Community（与门户站「OpenGrid」区分）
+  title: "OpenGrid Community",
   description:
     "卡丁车爱好者的交流论坛：问答、约赛、场地点评、装备交流。OpenGrid 旗下社区。",
 };

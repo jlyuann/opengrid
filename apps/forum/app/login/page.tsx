@@ -19,6 +19,7 @@ export default function LoginPage() {
   const t = useCopy().auth;
   const router = useRouter();
   const [mode, setMode] = useState<Mode>("login");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [pending, setPending] = useState(false);
@@ -47,7 +48,12 @@ export default function LoginPage() {
       router.push("/");
       router.refresh();
     } else {
-      const { data, error } = await supabase.auth.signUp({ email, password });
+      // 用户名随注册一起带上（存进 user metadata），由数据库触发器写入 profiles 表。
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: { data: { username: username.trim() } },
+      });
       setPending(false);
       if (error) {
         setError(error.message);
@@ -81,6 +87,24 @@ export default function LoginPage() {
           </p>
 
           <form onSubmit={handleSubmit} className="mt-7 space-y-4">
+            {/* 用户名：仅注册时出现 */}
+            {!isLogin && (
+              <label className="block">
+                <span className="text-sm font-medium">{t.usernameLabel}</span>
+                <input
+                  type="text"
+                  required
+                  minLength={2}
+                  maxLength={20}
+                  autoComplete="nickname"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder={t.usernameHint}
+                  className="mt-1.5 w-full rounded-xl border border-[var(--page-hairline)] bg-[var(--page-bg)] px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-[var(--page-fg-soft)]"
+                />
+              </label>
+            )}
+
             <label className="block">
               <span className="text-sm font-medium">{t.emailLabel}</span>
               <input

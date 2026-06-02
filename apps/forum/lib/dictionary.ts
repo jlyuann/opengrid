@@ -1,6 +1,6 @@
 // ============================================================
 // 论坛站双语文案（中 / 英）。UI 文案与板块信息放这里（结构性内容）。
-// 帖子 / 回帖等「假数据」放 forum-data.ts（原型阶段以中文为主）。
+// 帖子 / 回帖等动态内容来自 Supabase（见 lib/forum-queries.ts）。
 // ForumContent 类型确保中英两份结构对称，少写一项会报错。
 // ============================================================
 
@@ -15,12 +15,14 @@ export type ForumContent = {
   tagline: string;
   nav: { home: string; login: string; backToPortal: string };
   langToggle: string; // 切换到「另一种语言」时按钮显示的字
+  loading: string; // 数据加载中的占位文字
   home: {
     eyebrow: string;
     title: string;
     subtitle: string;
     boardsTitle: string;
     latestTitle: string;
+    empty: string; // 还没有任何帖子时
   };
   boards: Board[]; // 4 个板块（结构性，双语）
   categories: Category[]; // 侧边栏分类分组
@@ -38,6 +40,7 @@ export type ForumContent = {
     replyButton: string;
     loginNote: string;
     backToBoard: string;
+    notFound: string; // 帖子不存在/已删除
   };
   // 登录 / 注册页与用户区文案
   auth: {
@@ -45,6 +48,8 @@ export type ForumContent = {
     loginSubtitle: string;
     registerTitle: string;
     registerSubtitle: string;
+    usernameLabel: string;
+    usernameHint: string; // 用户名要求提示
     emailLabel: string;
     passwordLabel: string;
     passwordHint: string; // 密码要求提示
@@ -78,6 +83,7 @@ export const copy: Record<Lang, ForumContent> = {
     tagline: "卡丁车爱好者的聚集地——从第一次下场，到赛道上的老朋友。",
     nav: { home: "首页", login: "登录", backToPortal: "返回主站" },
     langToggle: "EN",
+    loading: "加载中……",
     home: {
       eyebrow: "卡丁车社区",
       title: "找到同好，一起下场",
@@ -85,6 +91,7 @@ export const copy: Record<Lang, ForumContent> = {
         "提问、约赛、聊场地、淘装备——卡丁车的一切，都在这里发生。挑一个板块，加入对话。",
       boardsTitle: "板块",
       latestTitle: "最新讨论",
+      empty: "还没有任何讨论——去板块里发第一帖吧。",
     },
     boards: [
       {
@@ -126,12 +133,15 @@ export const copy: Record<Lang, ForumContent> = {
       replyButton: "回复",
       loginNote: "登录后即可参与讨论（功能开发中）",
       backToBoard: "返回板块",
+      notFound: "这个帖子不存在，或已被删除。",
     },
     auth: {
       loginTitle: "登录",
       loginSubtitle: "欢迎回来，继续和大家聊卡丁车。",
       registerTitle: "注册",
       registerSubtitle: "加入 OpenGrid 社区，一起下场。",
+      usernameLabel: "用户名",
+      usernameHint: "2–20 位，发帖时显示的名字",
       emailLabel: "邮箱",
       passwordLabel: "密码",
       passwordHint: "至少 6 位",
@@ -166,6 +176,7 @@ export const copy: Record<Lang, ForumContent> = {
       "Where karting fans gather — from your very first session to old friends on track.",
     nav: { home: "Home", login: "Log in", backToPortal: "Main site" },
     langToggle: "中",
+    loading: "Loading…",
     home: {
       eyebrow: "Karting community",
       title: "Find your people. Hit the track.",
@@ -173,6 +184,7 @@ export const copy: Record<Lang, ForumContent> = {
         "Ask, race together, talk tracks, trade gear — everything karting happens here. Pick a board and join the conversation.",
       boardsTitle: "Boards",
       latestTitle: "Latest discussions",
+      empty: "No discussions yet — head into a board and post the first one.",
     },
     boards: [
       {
@@ -214,12 +226,15 @@ export const copy: Record<Lang, ForumContent> = {
       replyButton: "Reply",
       loginNote: "Log in to join the discussion (coming soon)",
       backToBoard: "Back to board",
+      notFound: "This thread doesn't exist, or has been removed.",
     },
     auth: {
       loginTitle: "Log in",
       loginSubtitle: "Welcome back — let's talk karting.",
       registerTitle: "Sign up",
       registerSubtitle: "Join the OpenGrid community and hit the track.",
+      usernameLabel: "Username",
+      usernameHint: "2–20 chars, shown on your posts",
       emailLabel: "Email",
       passwordLabel: "Password",
       passwordHint: "At least 6 characters",

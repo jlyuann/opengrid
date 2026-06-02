@@ -1,19 +1,31 @@
 "use client";
 
-// 板块页主体：板块标题 + 简介 + 帖子列表 + 发帖按钮（占位）。
-// slug 由服务端路由传入；板块名/简介/标签经 useCopy 双语解析。
+// 板块页主体：板块标题 + 简介 + 帖子列表 + 发帖按钮（占位，2c 接写入）。
+// slug 由服务端路由传入；帖子来自 Supabase；板块名/简介经 useCopy 双语解析。
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Reveal, buttonMotion } from "@opengrid/ui";
+import { Reveal, buttonMotion, useLanguage } from "@opengrid/ui";
 import { useCopy } from "@/lib/useCopy";
 import { ThreadRow } from "@/components/ThreadRow";
-import { threadsByBoard } from "@/lib/forum-data";
+import { fetchThreadsByBoard, type ThreadSummary } from "@/lib/forum-queries";
 
 export function BoardView({ slug }: { slug: string }) {
   const t = useCopy();
+  const { lang } = useLanguage();
   const board = t.boards.find((b) => b.slug === slug);
-  const threads = threadsByBoard(slug);
+
+  const [threads, setThreads] = useState<ThreadSummary[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    fetchThreadsByBoard(slug)
+      .then(setThreads)
+      .catch(() => setThreads([]))
+      .finally(() => setLoading(false));
+  }, [slug]);
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-12 text-[var(--page-fg)] md:py-16">
@@ -46,7 +58,11 @@ export function BoardView({ slug }: { slug: string }) {
       </Reveal>
 
       <div className="mt-10 divide-y divide-[var(--page-hairline)]">
-        {threads.length === 0 ? (
+        {loading ? (
+          <p className="py-10 text-center text-sm text-[var(--page-fg-soft)]">
+            {t.loading}
+          </p>
+        ) : threads.length === 0 ? (
           <p className="py-10 text-center text-[var(--page-fg-soft)]">
             {t.board.empty}
           </p>
@@ -55,6 +71,7 @@ export function BoardView({ slug }: { slug: string }) {
             <ThreadRow
               key={thread.id}
               thread={thread}
+              lang={lang}
               repliesLabel={t.board.repliesLabel}
             />
           ))

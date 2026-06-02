@@ -1,16 +1,58 @@
 "use client";
 
 // 帖子详情主体：返回板块 → 主楼（标题 + 作者/时间 + 正文）→ 全部回复 → 回复框（占位）。
-// thread 为纯数据，由服务端路由查好后传入；标签与板块名经 useCopy 双语解析。
+// 按 id 从 Supabase 查帖子 + 回帖；标签与板块名经 useCopy 双语解析。
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Reveal } from "@opengrid/ui";
+import { Reveal, useLanguage } from "@opengrid/ui";
 import { useCopy } from "@/lib/useCopy";
 import { ReplyComposer } from "@/components/ReplyComposer";
-import type { Thread } from "@/lib/forum-data";
+import {
+  fetchThread,
+  formatRelativeTime,
+  type ThreadDetail,
+} from "@/lib/forum-queries";
 
-export function ThreadView({ thread }: { thread: Thread }) {
+export function ThreadView({ id }: { id: string }) {
   const t = useCopy();
+  const { lang } = useLanguage();
+
+  const [thread, setThread] = useState<ThreadDetail | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    fetchThread(id)
+      .then(setThread)
+      .catch(() => setThread(null))
+      .finally(() => setLoading(false));
+  }, [id]);
+
+  if (loading) {
+    return (
+      <main className="mx-auto max-w-3xl px-6 py-16 text-center text-sm text-[var(--page-fg-soft)]">
+        {t.loading}
+      </main>
+    );
+  }
+
+  if (!thread) {
+    return (
+      <main className="mx-auto max-w-3xl px-6 py-16 text-[var(--page-fg)]">
+        <Link
+          href="/"
+          className="text-sm text-[var(--page-fg-soft)] transition-opacity hover:opacity-60"
+        >
+          ← {t.board.back}
+        </Link>
+        <p className="mt-8 text-center text-[var(--page-fg-soft)]">
+          {t.thread.notFound}
+        </p>
+      </main>
+    );
+  }
+
   const board = t.boards.find((b) => b.slug === thread.board);
 
   return (
@@ -31,11 +73,11 @@ export function ThreadView({ thread }: { thread: Thread }) {
           </h1>
           <div className="mt-3 flex items-center gap-2 text-sm text-[var(--page-fg-soft)]">
             <span className="font-medium text-[var(--page-fg)]">
-              {thread.author}
+              {thread.authorName}
             </span>
-            <span>{thread.handle}</span>
+            <span>{thread.authorHandle}</span>
             <span aria-hidden>·</span>
-            <span>{thread.time}</span>
+            <span>{formatRelativeTime(thread.createdAt, lang)}</span>
           </div>
           <p className="mt-6 whitespace-pre-line text-[1.0625rem] leading-[1.85] text-[var(--page-fg-soft)]">
             {thread.body}
@@ -46,18 +88,18 @@ export function ThreadView({ thread }: { thread: Thread }) {
       {/* 回复 */}
       <section className="mt-12">
         <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--page-fg-soft)]">
-          {t.thread.repliesTitle} · {thread.replies.length}
+          {t.thread.repliesTitle} · {thread.replyCount}
         </h2>
         <div className="mt-4 divide-y divide-[var(--page-hairline)]">
           {thread.replies.map((r) => (
             <div key={r.id} className="py-5">
               <div className="flex items-center gap-2 text-sm text-[var(--page-fg-soft)]">
                 <span className="font-medium text-[var(--page-fg)]">
-                  {r.author}
+                  {r.authorName}
                 </span>
-                <span>{r.handle}</span>
+                <span>{r.authorHandle}</span>
                 <span aria-hidden>·</span>
-                <span>{r.time}</span>
+                <span>{formatRelativeTime(r.createdAt, lang)}</span>
               </div>
               <p className="mt-2 leading-[1.8] text-[var(--page-fg-soft)]">
                 {r.body}
@@ -66,7 +108,7 @@ export function ThreadView({ thread }: { thread: Thread }) {
           ))}
         </div>
 
-        {/* 回复框（占位，第②步接 Supabase 后启用） */}
+        {/* 回复框（占位，2c 接 Supabase 写入后启用） */}
         <ReplyComposer />
       </section>
     </main>

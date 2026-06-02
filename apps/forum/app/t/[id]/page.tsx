@@ -1,11 +1,6 @@
-import { notFound } from "next/navigation";
-import { THREADS, getThread } from "@/lib/forum-data";
 import { ThreadView } from "@/components/ThreadView";
 
-export function generateStaticParams() {
-  return THREADS.map((thread) => ({ id: thread.id }));
-}
-
+// 帖子 id 来自数据库、随发帖动态产生，不预生成静态参数。
 // Next 16：动态路由的 params 是 Promise，需 await。
 export default async function ThreadPage({
   params,
@@ -13,7 +8,5 @@ export default async function ThreadPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const thread = getThread(id);
-  if (!thread) notFound();
-  return <ThreadView thread={thread} />;
+  return <ThreadView id={id} />;
 }

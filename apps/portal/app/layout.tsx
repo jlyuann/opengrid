@@ -22,7 +22,8 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: "OpenGrid · 邻里赛车社区 | Neighborhood Racing Community",
+  // 标签页只显示品牌名；详细描述留给 description（SEO 用）
+  title: "OpenGrid",
   description:
     "降低门槛，凝聚邻里，让更多人爱上 F1 与卡丁车。一个由学生发起的社区项目。",
 };
