@@ -159,7 +159,7 @@ export const copy: Record<Lang, ForumContent> = {
     },
     meta: { by: "由", replies: "回复" },
     footer: {
-      madeWith: "由一群卡丁车爱好者用热爱搭建。",
+      madeWith: "由热爱驱动",
       rights: "OpenGrid 社区 · 原型演示",
     },
     theme: {
@@ -253,7 +253,7 @@ export const copy: Record<Lang, ForumContent> = {
     },
     meta: { by: "by", replies: "replies" },
     footer: {
-      madeWith: "Built by a few karting fans, out of love for the sport.",
+      madeWith: "Driven by passion",
       rights: "OpenGrid Community · Prototype demo",
     },
     theme: {
