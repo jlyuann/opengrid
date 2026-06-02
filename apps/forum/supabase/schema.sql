@@ -31,18 +31,22 @@ create table public.threads (
   created_at timestamptz not null default now()
 );
 
--- 3) 回帖表
+-- 3) 回帖表（抖音式扁平评论流）
+--    parent_reply_id：为空 = 直接回复主楼；指向某条回帖 = 「回复了那条的作者」，
+--    仅用于显示「回复 @某人」，不分层、谁都能回复谁、无层级限制。
 create table public.replies (
-  id         uuid primary key default gen_random_uuid(),
-  thread_id  uuid not null references public.threads(id) on delete cascade,
-  body       text not null,
-  author_id  uuid not null references public.profiles(id) on delete cascade,
-  created_at timestamptz not null default now()
+  id              uuid primary key default gen_random_uuid(),
+  thread_id       uuid not null references public.threads(id) on delete cascade,
+  parent_reply_id uuid references public.replies(id) on delete cascade,
+  body            text not null,
+  author_id       uuid not null references public.profiles(id) on delete cascade,
+  created_at      timestamptz not null default now()
 );
 
--- 常用查询的索引：按板块取最新帖、按帖取回帖
+-- 常用查询的索引：按板块取最新帖、按帖取回帖、按「回复对象」反查
 create index threads_board_created_idx on public.threads (board, created_at desc);
 create index replies_thread_created_idx on public.replies (thread_id, created_at);
+create index replies_parent_idx on public.replies (parent_reply_id);
 
 -- ============================================================
 -- 行级安全（RLS）：默认开启后「没策略 = 谁都不能动」，再逐条放开。

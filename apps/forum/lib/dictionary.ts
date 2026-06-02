@@ -46,7 +46,12 @@ export type ForumContent = {
     repliesTitle: string;
     replyPlaceholder: string;
     replyButton: string;
-    loginNote: string;
+    replyTo: string; // 「回复 @某人」里的「回复」前缀（也用于输入框上的对象提示）
+    replyPending: string; // 回复中…
+    replyError: string; // 回复失败提示
+    cancel: string; // 取消回复对象
+    loginNote: string; // 未登录时的提示
+    loginCta: string; // 「去登录」
     backToBoard: string;
     notFound: string; // 帖子不存在/已删除
   };
@@ -141,7 +146,12 @@ export const copy: Record<Lang, ForumContent> = {
       repliesTitle: "全部回复",
       replyPlaceholder: "写下你的回复……",
       replyButton: "回复",
-      loginNote: "登录后即可参与讨论（功能开发中）",
+      replyTo: "回复",
+      replyPending: "回复中……",
+      replyError: "回复失败，请稍后再试。",
+      cancel: "取消",
+      loginNote: "登录后即可参与讨论",
+      loginCta: "去登录",
       backToBoard: "返回板块",
       notFound: "这个帖子不存在，或已被删除。",
     },
@@ -236,7 +246,12 @@ export const copy: Record<Lang, ForumContent> = {
       repliesTitle: "All replies",
       replyPlaceholder: "Write your reply…",
       replyButton: "Reply",
-      loginNote: "Log in to join the discussion (coming soon)",
+      replyTo: "Reply to",
+      replyPending: "Posting…",
+      replyError: "Couldn't post. Please try again.",
+      cancel: "Cancel",
+      loginNote: "Log in to join the discussion",
+      loginCta: "Log in",
       backToBoard: "Back to board",
       notFound: "This thread doesn't exist, or has been removed.",
     },

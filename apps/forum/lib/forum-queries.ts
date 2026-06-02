@@ -24,11 +24,12 @@ export type ReplyItem = {
   authorHandle: string;
   createdAt: string;
   body: string;
+  replyToName: string | null; // 回复的是谁（为空 = 直接回复主楼，抖音式扁平流）
 };
 
 export type ThreadDetail = ThreadSummary & {
   body: string;
-  replies: ReplyItem[];
+  replies: ReplyItem[]; // 扁平一条流，按时间正序
 };
 
 // Supabase 嵌套查询返回的原始行（author 经 profiles 外键内联）。
@@ -109,13 +110,36 @@ export async function createThread(input: {
   return data.id as string;
 }
 
+// 回帖：写一条 replies 记录，返回新回帖 id。
+// 同样 author_id = 当前登录用户（RLS with check），浏览器客户端自动带 session。
+export async function createReply(input: {
+  threadId: string;
+  body: string;
+  authorId: string;
+  parentReplyId?: string; // 传了 = 二层楼中楼；不传 = 一层直接回复
+}): Promise<string> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("replies")
+    .insert({
+      thread_id: input.threadId,
+      parent_reply_id: input.parentReplyId ?? null,
+      body: input.body,
+      author_id: input.authorId,
+    })
+    .select("id")
+    .single();
+  if (error) throw error;
+  return data.id as string;
+}
+
 // 单帖详情 + 全部回帖（回帖按时间正序）
 export async function fetchThread(id: string): Promise<ThreadDetail | null> {
   const supabase = createClient();
   const { data, error } = await supabase
     .from("threads")
     .select(
-      "id, board, title, body, created_at, author:profiles(username), replies(id, body, created_at, author:profiles(username))",
+      "id, board, title, body, created_at, author:profiles(username), replies(id, parent_reply_id, body, created_at, author:profiles(username))",
     )
     .eq("id", id)
     .maybeSingle();
@@ -123,24 +147,41 @@ export async function fetchThread(id: string): Promise<ThreadDetail | null> {
   if (!data) return null;
 
   const name = nameOf(data.author as AuthorRel);
-  const replies: ReplyItem[] = (
+
+  // 原始回帖（带 parentId 与作者名），先收集
+  const raw = (
     (data.replies as {
       id: string;
+      parent_reply_id: string | null;
       body: string;
       created_at: string;
       author: AuthorRel;
     }[]) ?? []
-  )
-    .map((r) => {
-      const rn = nameOf(r.author);
-      return {
-        id: r.id,
-        authorName: rn,
-        authorHandle: handleOf(rn),
-        createdAt: r.created_at,
-        body: r.body,
-      };
-    })
+  ).map((r) => {
+    const rn = nameOf(r.author);
+    return {
+      id: r.id,
+      authorName: rn,
+      authorHandle: handleOf(rn),
+      createdAt: r.created_at,
+      body: r.body,
+      parentId: r.parent_reply_id,
+    };
+  });
+
+  // id → 作者名，用来把「回复了哪条」翻译成「回复 @某人」
+  const nameById = new Map(raw.map((r) => [r.id, r.authorName]));
+
+  // 扁平一条流，按时间正序；replyToName 为空 = 直接回复主楼
+  const replies: ReplyItem[] = raw
+    .map((r) => ({
+      id: r.id,
+      authorName: r.authorName,
+      authorHandle: r.authorHandle,
+      createdAt: r.createdAt,
+      body: r.body,
+      replyToName: r.parentId ? (nameById.get(r.parentId) ?? null) : null,
+    }))
     .sort((a, b) => a.createdAt.localeCompare(b.createdAt));
 
   return {
