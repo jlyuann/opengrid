@@ -24,7 +24,7 @@ create table public.profiles (
 -- 2) 帖子表
 create table public.threads (
   id         uuid primary key default gen_random_uuid(),
-  board      text not null,                                  -- 板块 slug：qa / meetup / tracks / gear
+  board      text not null,                                  -- 板块 slug：karting / moto / racing
   title      text not null,
   body       text not null,
   author_id  uuid not null references public.profiles(id) on delete cascade,

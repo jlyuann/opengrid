@@ -95,29 +95,23 @@ export const copy: Record<Lang, ForumContent> = {
     },
     boards: [
       {
-        slug: "qa",
-        name: "问答区",
-        desc: "提问与解答，新手到老手都欢迎——任何关于卡丁车的疑问都能在这里聊。",
+        slug: "karting",
+        name: "卡丁车",
+        desc: "从第一次下场到赛道老手——提问、约赛、聊场地与装备，卡丁车的一切都在这里。",
       },
       {
-        slug: "meetup",
-        name: "约赛 · 组局",
-        desc: "约人一起下场跑卡丁车，发起或报名身边的活动。",
+        slug: "moto",
+        name: "机车",
+        desc: "街车、跑车与机车文化——骑行路线、改装保养、装备交流，骑士们的聚集地。",
       },
       {
-        slug: "tracks",
-        name: "场地点评",
-        desc: "各地卡丁车场的位置、价格与真实体验，帮你找到「去哪儿开」。",
-      },
-      {
-        slug: "gear",
-        name: "装备交流 · 二手",
-        desc: "头盔、赛服、手套的讨论与二手转让，先体验再拥有。",
+        slug: "racing",
+        name: "赛车",
+        desc: "方程式、房车赛、拉力——赛事讨论、技术解析，真车与模拟赛车都聊。",
       },
     ],
     categories: [
-      { id: "discuss", name: "讨论", boards: ["qa", "meetup"] },
-      { id: "field", name: "场地 · 装备", boards: ["tracks", "gear"] },
+      { id: "boards", name: "讨论区", boards: ["karting", "moto", "racing"] },
     ],
     board: {
       threadsLabel: "帖",
@@ -188,29 +182,23 @@ export const copy: Record<Lang, ForumContent> = {
     },
     boards: [
       {
-        slug: "qa",
-        name: "Q&A",
-        desc: "Questions and answers — beginners and veterans alike. Anything karting goes here.",
+        slug: "karting",
+        name: "Karting",
+        desc: "From your first session to track veterans — questions, meetups, tracks and gear. All things karting.",
       },
       {
-        slug: "meetup",
-        name: "Meetups",
-        desc: "Find people to hit the track with; start or join an outing near you.",
+        slug: "moto",
+        name: "Motorcycles",
+        desc: "Street, sport and riding culture — routes, mods, maintenance and gear talk for riders.",
       },
       {
-        slug: "tracks",
-        name: "Track Reviews",
-        desc: "Locations, prices and honest reviews of kart tracks — find where to drive.",
-      },
-      {
-        slug: "gear",
-        name: "Gear & Trade",
-        desc: "Helmet, suit and glove talk plus second-hand trading — try before you own.",
+        slug: "racing",
+        name: "Racing",
+        desc: "Formula, touring cars, rally — race discussion, tech breakdowns, real and sim alike.",
       },
     ],
     categories: [
-      { id: "discuss", name: "Discussion", boards: ["qa", "meetup"] },
-      { id: "field", name: "Tracks & Gear", boards: ["tracks", "gear"] },
+      { id: "boards", name: "Boards", boards: ["karting", "moto", "racing"] },
     ],
     board: {
       threadsLabel: "threads",
