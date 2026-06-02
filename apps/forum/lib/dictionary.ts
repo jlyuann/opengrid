@@ -33,6 +33,14 @@ export type ForumContent = {
     newThreadHint: string;
     back: string;
     empty: string;
+    compose: {
+      titlePlaceholder: string;
+      bodyPlaceholder: string;
+      submit: string;
+      submitting: string; // 发布中…
+      cancel: string;
+      error: string; // 发布失败提示
+    };
   };
   thread: {
     repliesTitle: string;
@@ -120,6 +128,14 @@ export const copy: Record<Lang, ForumContent> = {
       newThreadHint: "登录后即可发帖",
       back: "返回全部板块",
       empty: "这个板块还没有帖子——成为第一个发帖的人吧。",
+      compose: {
+        titlePlaceholder: "标题——一句话说清你想聊什么",
+        bodyPlaceholder: "正文……展开说说你的想法、问题或经历",
+        submit: "发布",
+        submitting: "发布中……",
+        cancel: "取消",
+        error: "发布失败，请稍后再试。",
+      },
     },
     thread: {
       repliesTitle: "全部回复",
@@ -207,6 +223,14 @@ export const copy: Record<Lang, ForumContent> = {
       newThreadHint: "Log in to post",
       back: "Back to all boards",
       empty: "No threads here yet — be the first to post.",
+      compose: {
+        titlePlaceholder: "Title — sum up your topic in one line",
+        bodyPlaceholder: "Body… share your thoughts, question or story",
+        submit: "Post",
+        submitting: "Posting…",
+        cancel: "Cancel",
+        error: "Couldn't post. Please try again.",
+      },
     },
     thread: {
       repliesTitle: "All replies",

@@ -85,6 +85,30 @@ export async function fetchThreadsByBoard(slug: string): Promise<ThreadSummary[]
   return (data ?? []).map(toSummary);
 }
 
+// 发帖：写入一条 threads 记录，返回新帖 id。
+// author_id 必须等于当前登录用户（RLS：with check auth.uid() = author_id），
+// 浏览器客户端会自动带上用户 session，无需手动设置鉴权头。
+export async function createThread(input: {
+  board: string;
+  title: string;
+  body: string;
+  authorId: string;
+}): Promise<string> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("threads")
+    .insert({
+      board: input.board,
+      title: input.title,
+      body: input.body,
+      author_id: input.authorId,
+    })
+    .select("id")
+    .single();
+  if (error) throw error;
+  return data.id as string;
+}
+
 // 单帖详情 + 全部回帖（回帖按时间正序）
 export async function fetchThread(id: string): Promise<ThreadDetail | null> {
   const supabase = createClient();
