@@ -1,0 +1,9 @@
+# 门户站（apps/portal）Netlify 云端构建配置。
+# 站点 base directory 指向 apps/portal，此文件即被读取。
+# 显式声明 Next.js 运行时插件，负责把 Next 构建产物接成可路由的部署
+# （静态页 + 服务端/边缘函数 + 重定向）。缺了它会整站 404。
+[build]
+  command = "npm run build"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
