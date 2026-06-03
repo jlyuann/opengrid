@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# netlify（本地构建/部署残留，任意层级都忽略）
+.netlify/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
