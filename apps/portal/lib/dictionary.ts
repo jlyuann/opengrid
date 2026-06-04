@@ -114,10 +114,8 @@ export type Content = {
     eyebrow: string;
     title: string;
     subtitle: string;
-    placeholder: string;
     button: string;
     note: string;
-    thanks: string;
   };
   footer: {
     tagline: string;
@@ -625,11 +623,9 @@ export const copy: Record<Lang, Content> = {
     join: {
       eyebrow: "加入我们",
       title: "成为第一批街区赛车手",
-      subtitle: "留下联系方式，论坛和首场活动上线时，第一时间通知你。",
-      placeholder: "你的邮箱或微信",
-      button: "抢先加入",
-      note: "我们不会发送垃圾信息。",
-      thanks: "收到啦！我们会尽快与你联系 🏁",
+      subtitle: "车友社区已经上线。注册一个账号，立刻加入大家的讨论。",
+      button: "加入社区",
+      note: "一分钟注册 · 已有账号可直接登录",
     },
     footer: {
       tagline: "降低门槛，凝聚邻里，让这项运动越来越好。",
@@ -1134,11 +1130,9 @@ export const copy: Record<Lang, Content> = {
       eyebrow: "Join us",
       title: "Be one of the first block racers",
       subtitle:
-        "Leave your contact and we'll ping you the moment the forum and first event go live.",
-      placeholder: "Your email or WeChat",
-      button: "Get early access",
-      note: "No spam, ever.",
-      thanks: "Got it! We'll be in touch soon 🏁",
+        "The community is live. Create an account and jump straight into the conversation.",
+      button: "Join the community",
+      note: "One-minute signup · already have an account? Just log in.",
     },
     footer: {
       tagline: "Lower the barrier, unite the neighborhood, grow the sport.",
