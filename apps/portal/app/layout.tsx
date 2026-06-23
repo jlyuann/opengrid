@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider, ThemeProvider } from "@opengrid/ui";
+import { LanguageProvider } from "@opengrid/ui";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
-import { SiteThemePicker } from "@/components/SiteThemePicker";
 
 // Inter 提供拉丁字母的精致字形；中文由 globals.css 里的字体栈兜底
 const inter = Inter({
@@ -39,16 +38,13 @@ export default function RootLayout({
       className={`${inter.variable} ${sourceSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full text-[var(--page-fg)]">
-        {/* 整页固定渐变背景层：随所选车队色细腻过渡 */}
+        {/* 整页固定纯黑背景层 */}
         <div className="page-bg" aria-hidden />
         <LanguageProvider>
-          <ThemeProvider>
-            {/* 跨页面共享的外壳：导航 / 页脚 / 取色器在所有路由都在 */}
-            <Nav />
-            {children}
-            <Footer />
-            <SiteThemePicker />
-          </ThemeProvider>
+          {/* 跨页面共享的外壳：导航 / 页脚在所有路由都在 */}
+          <Nav />
+          {children}
+          <Footer />
         </LanguageProvider>
       </body>
     </html>

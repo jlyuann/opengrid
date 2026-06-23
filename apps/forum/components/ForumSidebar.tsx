@@ -87,18 +87,14 @@ export function ForumSidebar({ onNavigate }: { onNavigate?: () => void }) {
                           <Link
                             href={href}
                             onClick={onNavigate}
-                            className={`flex items-center gap-1.5 rounded-lg border-l-2 px-3 py-1.5 text-sm transition-colors ${
+                            className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm transition-colors ${
                               active
-                                ? "border-[var(--accent)] bg-[var(--page-panel)] font-medium text-[var(--accent)]"
-                                : "border-transparent text-[var(--page-fg-soft)] hover:bg-[var(--page-panel)] hover:text-[var(--page-fg)]"
+                                ? "bg-[var(--page-panel)] font-medium text-[var(--page-fg)]"
+                                : "text-[var(--page-fg-soft)] hover:bg-[var(--page-panel)] hover:text-[var(--page-fg)]"
                             }`}
                           >
                             <span
-                              className={
-                                active
-                                  ? "text-[var(--accent)]"
-                                  : "text-[var(--page-fg-soft)]"
-                              }
+                              className="text-[var(--page-fg-soft)]"
                               aria-hidden
                             >
                               #

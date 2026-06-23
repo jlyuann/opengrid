@@ -21,17 +21,11 @@ export function Hero() {
       className="relative flex min-h-screen items-center justify-center overflow-hidden text-[var(--page-fg)]"
     >
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.6, ease }}
-          className="mx-auto mb-5 h-[3px] w-12 rounded-full bg-[var(--accent)] shadow-[0_0_18px_var(--accent)]"
-        />
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.05, ease }}
-          className="mb-6 text-sm font-medium uppercase tracking-[0.2em] text-[var(--accent)]"
+          transition={{ duration: 0.6, ease }}
+          className="mb-6 text-sm font-medium uppercase tracking-[0.2em] text-[var(--page-fg-soft)]"
         >
           {t.eyebrow}
         </motion.p>
@@ -73,7 +67,7 @@ export function Hero() {
           <motion.a
             href="#join"
             {...buttonMotion}
-            className="w-full rounded-full bg-[var(--accent)] px-7 py-3 text-base font-medium text-[var(--accent-ink)] shadow-[0_8px_30px_-8px_var(--accent)] sm:w-auto"
+            className="w-full rounded-full bg-[var(--page-fg)] px-7 py-3 text-base font-medium text-[var(--page-bg)] sm:w-auto"
           >
             {t.ctaPrimary}
           </motion.a>

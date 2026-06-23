@@ -21,11 +21,10 @@
 }
 
 /* ============================================================
-   主题系统（暗底 + 车队色点缀）：
-   --page-bg / --page-fg = 固定的暗底基色 + 近白文字（不随车队变）。
-   --accent = 所选车队色，只点在按钮/链接/选中态/顶部辉光上。
-   --accent-ink = 放在 accent 上的文字色，由 ThemeProvider 按亮度算黑/白。
-   accent 系列用 @property 注册成 <color>，换队时才能逐帧平滑过渡。
+   基础色系统：两个颜色变量驱动全站。
+   --page-bg = 纯黑底基色；--page-fg = 近白文字。
+   （F1 车队换肤功能已从主站移除，留作未来独立「车队」分区；
+     整套设计与代码见 git 分支 redesign/dark-accent。）
    ============================================================ */
 @property --page-bg {
   syntax: "<color>";
@@ -37,24 +36,10 @@
   inherits: true;
   initial-value: #f5f5f7;
 }
-/* 点缀色：所选车队色（暗底下过暗的队色会被自动提亮，见 theme.tsx）。 */
-@property --accent {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: #ffffff;
-}
-/* 放在 accent 上的文字色：按 accent 亮度自动黑/白。 */
-@property --accent-ink {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: #0a0a0c;
-}
 
 :root {
   --page-bg: #000000; /* OpenGrid 纯黑底 */
   --page-fg: #f5f5f7; /* 黑底 → 近白字 */
-  --accent: #ffffff; /* 默认主题=白点缀；换队时由 ThemeProvider 改写 */
-  --accent-ink: #0a0a0c; /* 放在 accent 上的文字色 */
   /* 次要文字：自动跟随 --page-fg 变淡 */
   --page-fg-soft: color-mix(in srgb, var(--page-fg) 62%, transparent);
   /* 细描边 / 半透明面板用 */
@@ -66,11 +51,6 @@ html {
   scroll-behavior: smooth;
   /* 顶部固定导航栏的高度，锚点跳转时留出空间 */
   scroll-padding-top: 5rem;
-  /* 切换车队时，点缀色逐帧细腻过渡（暗底基色固定不动）。
-     0.45s + easeOutExpo 缓动：起步快、收尾柔。 */
-  transition:
-    --accent 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    --accent-ink 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 body {
@@ -80,7 +60,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* 整页固定背景层：纯黑。车队色不再染背景，改由前景元素（短线/光条/按钮辉光）提色。 */
+/* 整页固定背景层：纯黑基色。 */
 .page-bg {
   position: fixed;
   inset: 0;

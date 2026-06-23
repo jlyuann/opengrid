@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider, ThemeProvider } from "@opengrid/ui";
+import { LanguageProvider } from "@opengrid/ui";
 import { AuthProvider } from "@/components/AuthProvider";
 import { ForumShell } from "@/components/ForumShell";
-import { SiteThemePicker } from "@/components/SiteThemePicker";
 
 // 与门户站完全一致的字体设置（同名 CSS 变量），保证跨站排版统一。
 const inter = Inter({
@@ -37,15 +36,12 @@ export default function RootLayout({
       className={`${inter.variable} ${sourceSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full text-[var(--page-fg)]">
-        {/* 整页固定渐变背景层：与门户站共用同一套主题系统 */}
+        {/* 整页固定纯黑背景层：与门户站共用同一套基础色 */}
         <div className="page-bg" aria-hidden />
         <LanguageProvider>
-          <ThemeProvider>
-            <AuthProvider>
-              <ForumShell>{children}</ForumShell>
-              <SiteThemePicker />
-            </AuthProvider>
-          </ThemeProvider>
+          <AuthProvider>
+            <ForumShell>{children}</ForumShell>
+          </AuthProvider>
         </LanguageProvider>
       </body>
     </html>

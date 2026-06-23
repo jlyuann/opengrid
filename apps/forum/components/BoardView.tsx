@@ -110,7 +110,7 @@ export function BoardView({ slug }: { slug: string }) {
             {...buttonMotion}
             onClick={onNewThread}
             title={!user ? t.board.newThreadHint : undefined}
-            className="shrink-0 rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-medium text-[var(--accent-ink)] shadow-[0_8px_30px_-8px_var(--accent)]"
+            className="shrink-0 rounded-full bg-[var(--page-fg)] px-4 py-2 text-sm font-medium text-[var(--page-bg)]"
           >
             {composing ? c.cancel : t.board.newThread}
           </motion.button>
@@ -150,7 +150,7 @@ export function BoardView({ slug }: { slug: string }) {
                   {...buttonMotion}
                   onClick={onSubmit}
                   disabled={!canSubmit}
-                  className="shrink-0 rounded-full bg-[var(--accent)] px-5 py-2 text-sm font-medium text-[var(--accent-ink)] shadow-[0_8px_30px_-8px_var(--accent)] disabled:cursor-not-allowed disabled:opacity-40"
+                  className="shrink-0 rounded-full bg-[var(--page-fg)] px-5 py-2 text-sm font-medium text-[var(--page-bg)] disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   {submitting ? c.submitting : c.submit}
                 </motion.button>
