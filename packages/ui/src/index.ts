@@ -8,6 +8,9 @@ export { springSnappy, buttonMotion } from "./motion";
 // 语言状态机（仅状态，不含文案）
 export { LanguageProvider, useLanguage, type Lang } from "./i18n";
 
+// 品牌字标
+export { Logo } from "./Logo";
+
 // 通用原语组件
 export { Reveal } from "./Reveal";
 export {

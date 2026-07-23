@@ -5,6 +5,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Logo } from "@opengrid/ui";
 import { useCopy } from "@/lib/useCopy";
 import { ForumSidebar } from "@/components/ForumSidebar";
 import { ForumFooter } from "@/components/ForumFooter";
@@ -25,8 +26,8 @@ export function ForumShell({ children }: { children: React.ReactNode }) {
         >
           <span className="text-lg leading-none">☰</span>
         </button>
-        <Link href="/" className="text-base font-semibold tracking-tight">
-          {t.brand}
+        <Link href="/" aria-label={t.brand}>
+          <Logo className="text-base" label={t.brand} />
         </Link>
       </div>
 

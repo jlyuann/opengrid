@@ -7,7 +7,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { useLanguage, buttonMotion, springSnappy } from "@opengrid/ui";
+import { useLanguage, buttonMotion, springSnappy, Logo } from "@opengrid/ui";
 import { useCopy } from "@/lib/useCopy";
 import { useAuth } from "@/components/AuthProvider";
 import { PORTAL_URL } from "@/lib/links";
@@ -39,9 +39,10 @@ export function ForumSidebar({ onNavigate }: { onNavigate?: () => void }) {
         <Link
           href="/"
           onClick={onNavigate}
-          className="flex h-12 items-center px-5 text-lg font-semibold tracking-tight"
+          aria-label={t.brand}
+          className="flex h-12 items-center px-5"
         >
-          {t.brand}
+          <Logo className="text-lg" label={t.brand} />
         </Link>
       </div>
 

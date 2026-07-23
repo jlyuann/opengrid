@@ -5,7 +5,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useCopy } from "@/lib/useCopy";
-import { buttonMotion } from "@opengrid/ui";
+import { buttonMotion, Logo } from "@opengrid/ui";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -30,24 +30,18 @@ export function Hero() {
           {t.eyebrow}
         </motion.p>
 
-        <h1 className="text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
-          <motion.span
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.05, ease }}
-            className="block"
-          >
-            {t.titleTop}
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15, ease }}
-            className="block opacity-60"
-          >
-            {t.titleBottom}
-          </motion.span>
-        </h1>
+        {/* 品牌字标（技术/赛道风）作为首屏主标题：单宽字 + 细点阵背景 */}
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.05, ease }}
+          className="flex justify-center"
+        >
+          <Logo
+            withGrid
+            className="text-5xl leading-none sm:text-6xl md:text-7xl"
+          />
+        </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
